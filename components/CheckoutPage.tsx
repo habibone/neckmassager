@@ -8,6 +8,9 @@ interface CheckoutPageProps {
   onBack: () => void;
 }
 
+// Updated with the user's specific Google Apps Script Web App URL
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwRUzY-89O1fj4Yf6R6DBf_d9SlixxoBL9R_JRluwRcHbP-TafAZV-D1kjt5OVcJc8U/exec';
+
 const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack }) => {
   const [isPlacing, setIsPlacing] = useState(false);
   const [formData, setFormData] = useState({
@@ -19,23 +22,48 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
     confirmed: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.confirmed) return alert("Please confirm your details are correct.");
+    
     setIsPlacing(true);
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      const payload = {
+        ...formData,
+        orderItem: offer.name,
+        quantity: offer.qty,
+        totalPrice: offer.price,
+        orderDate: new Date().toISOString()
+      };
+
+      // We use no-cors because Google Apps Script redirects after a POST request,
+      // which standard CORS preflight checks often fail on in simple setups.
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      // With 'no-cors', the response is opaque, but if the fetch succeeds, we proceed.
       setIsPlacing(false);
       onConfirm();
-    }, 2000);
+    } catch (error) {
+      console.error("Order submission error:", error);
+      setIsPlacing(false);
+      alert("There was an error placing your order. Please try again or contact us on WhatsApp.");
+    }
   };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* HEADER */}
       <header className="bg-white border-b border-gray-200 py-6 px-6 shadow-sm">
-        <div className="max-w-xl mx-auto text-center space-y-2">
-          <button onClick={onBack} className="absolute left-6 top-7 text-gray-400 hover:text-gray-600">
+        <div className="max-w-xl mx-auto text-center space-y-2 relative">
+          <button onClick={onBack} className="absolute left-0 top-1 text-gray-400 hover:text-gray-600 p-2">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
           </button>
           <h1 className="text-xl md:text-2xl font-black text-gray-900 tracking-tight">Secure Checkout</h1>
