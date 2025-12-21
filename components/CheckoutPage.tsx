@@ -8,7 +8,6 @@ interface CheckoutPageProps {
   onBack: () => void;
 }
 
-// Updated with the user's specific Google Apps Script Web App URL
 const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwRUzY-89O1fj4Yf6R6DBf_d9SlixxoBL9R_JRluwRcHbP-TafAZV-D1kjt5OVcJc8U/exec';
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack }) => {
@@ -28,33 +27,41 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
     
     setIsPlacing(true);
 
-    try {
-      const payload = {
-        ...formData,
-        orderItem: offer.name,
-        quantity: offer.qty,
-        totalPrice: offer.price,
-        orderDate: new Date().toISOString()
-      };
+    const payload = {
+      fullName: formData.fullName,
+      mobile: formData.mobile,
+      city: formData.city,
+      address: formData.address,
+      email: formData.email,
+      orderItem: offer.name,
+      quantity: offer.qty,
+      totalPrice: offer.price,
+      orderDate: new Date().toLocaleString('en-AE', { timeZone: 'Asia/Dubai' })
+    };
 
-      // We use no-cors because Google Apps Script redirects after a POST request,
-      // which standard CORS preflight checks often fail on in simple setups.
+    try {
+      /**
+       * Note: Google Apps Script Web Apps require 'no-cors' for POST requests from browsers 
+       * to avoid pre-flight (OPTIONS) errors. With 'no-cors', we cannot use 'application/json'.
+       * We send as 'text/plain' which is allowed and then JSON.parse it inside the script.
+       */
       await fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
         mode: 'no-cors',
+        cache: 'no-cache',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'text/plain;charset=utf-8',
         },
         body: JSON.stringify(payload),
       });
 
-      // With 'no-cors', the response is opaque, but if the fetch succeeds, we proceed.
+      // With no-cors, the response is opaque (status 0). We treat a finished request as success.
       setIsPlacing(false);
       onConfirm();
     } catch (error) {
-      console.error("Order submission error:", error);
+      console.error("Critical submission error:", error);
       setIsPlacing(false);
-      alert("There was an error placing your order. Please try again or contact us on WhatsApp.");
+      alert("Submission error. Please check your internet or try again later.");
     }
   };
 
@@ -66,19 +73,8 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
           <button onClick={onBack} className="absolute left-0 top-1 text-gray-400 hover:text-gray-600 p-2">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
           </button>
-          <h1 className="text-xl md:text-2xl font-black text-gray-900 tracking-tight">Secure Checkout</h1>
-          <p className="text-green-600 font-bold text-sm uppercase tracking-wide">Pay Cash on Delivery</p>
-          
-          <div className="flex justify-center space-x-4 pt-2">
-             <div className="flex items-center space-x-1 text-[10px] font-bold text-gray-500 uppercase">
-               <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
-               <span>Cash on Delivery</span>
-             </div>
-             <div className="flex items-center space-x-1 text-[10px] font-bold text-gray-500 uppercase">
-               <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
-               <span>No Card Required</span>
-             </div>
-          </div>
+          <h1 className="text-xl md:text-2xl font-black text-gray-900 tracking-tight uppercase">Secure Checkout</h1>
+          <p className="text-green-600 font-bold text-sm uppercase tracking-wide">Cash on Delivery (COD)</p>
         </div>
       </header>
 
@@ -86,50 +82,35 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
         {/* ORDER SUMMARY */}
         <section className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
           <div className="flex items-center space-x-4">
-            <div className="w-20 h-20 bg-white rounded-2xl overflow-hidden flex-shrink-0 border border-gray-50">
-               <img src="https://supplipure.com/wp-content/uploads/2025/12/Bionic-Heated-Neck3.png" alt="Product" className="w-full h-full object-contain p-2" />
+            <div className="w-16 h-16 bg-white rounded-xl overflow-hidden flex-shrink-0 border border-gray-50">
+               <img src="https://supplipure.com/wp-content/uploads/2025/12/Bionic-Heated-Neck3.png" alt="Product" className="w-full h-full object-contain p-1" />
             </div>
             <div className="flex-1">
-              <h3 className="font-bold text-gray-900">{offer.name}</h3>
-              <p className="text-xs text-gray-500">Offer: {offer.label} | Size: Universal</p>
-              <div className="mt-2 flex items-center justify-between">
+              <h3 className="font-bold text-gray-900 text-sm">{offer.name}</h3>
+              <div className="mt-1 flex items-center justify-between">
                 <span className="font-black text-orange-600">{offer.price} AED</span>
-                <span className="text-xs bg-orange-50 text-orange-700 px-2 py-1 rounded-lg font-bold">Qty: {offer.qty}</span>
+                <span className="text-[10px] bg-orange-50 text-orange-700 px-2 py-0.5 rounded-full font-bold">QTY: {offer.qty}</span>
               </div>
             </div>
           </div>
-          <div className="mt-6 pt-6 border-t border-dashed border-gray-100 space-y-2">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Subtotal</span>
-              <span className="text-gray-900 font-bold">{offer.price} AED</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Shipping</span>
-              <span className="text-green-600 font-bold uppercase text-xs">Free</span>
-            </div>
-            <div className="flex justify-between items-center pt-2 text-lg">
-              <span className="font-black text-gray-900 uppercase tracking-tighter">Total Payable</span>
-              <span className="font-black text-gray-900">{offer.price} AED</span>
-            </div>
+          <div className="mt-4 pt-4 border-t border-dashed border-gray-100 flex justify-between items-center">
+            <span className="font-bold text-gray-900 uppercase text-xs tracking-widest">Total to Pay on Delivery</span>
+            <span className="font-black text-xl text-gray-900">{offer.price} AED</span>
           </div>
         </section>
 
         {/* CUSTOMER FORM */}
         <form id="checkout-form" onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
-            <h3 className="text-lg font-black text-gray-900 uppercase tracking-tight flex items-center">
-              <span className="w-8 h-8 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-sm mr-2">1</span>
-              Delivery Details
-            </h3>
+            <h3 className="text-lg font-black text-gray-900 uppercase tracking-tight">Delivery Address</h3>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Full Name *</label>
+                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Your Full Name</label>
                 <input 
                   required
-                  autoFocus
                   type="text"
-                  placeholder="e.g. Ahmed bin Salem"
+                  placeholder="e.g. Abdullah Ahmed"
                   className="w-full px-5 py-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-medium"
                   value={formData.fullName}
                   onChange={e => setFormData({...formData, fullName: e.target.value})}
@@ -137,20 +118,20 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mobile Number *</label>
+                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Mobile Number (Active)</label>
                 <input 
                   required
                   type="tel"
-                  placeholder="e.g. 050 123 4567"
+                  placeholder="05x xxx xxxx"
                   className="w-full px-5 py-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-medium"
                   value={formData.mobile}
                   onChange={e => setFormData({...formData, mobile: e.target.value})}
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">City *</label>
+                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5">City</label>
                   <input 
                     required
                     type="text"
@@ -161,10 +142,10 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Email (Optional)</label>
+                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Email (Optional)</label>
                   <input 
                     type="email"
-                    placeholder="for order tracking"
+                    placeholder="For tracking"
                     className="w-full px-5 py-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-medium"
                     value={formData.email}
                     onChange={e => setFormData({...formData, email: e.target.value})}
@@ -173,11 +154,11 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Full Delivery Address *</label>
+                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Full Shipping Address</label>
                 <textarea 
                   required
                   rows={3}
-                  placeholder="Apartment/Villa No, Street Name, Area..."
+                  placeholder="Villa/Apartment No, Street, Landmark..."
                   className="w-full px-5 py-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-medium resize-none"
                   value={formData.address}
                   onChange={e => setFormData({...formData, address: e.target.value})}
@@ -186,28 +167,15 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-lg font-black text-gray-900 uppercase tracking-tight flex items-center">
-              <span className="w-8 h-8 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-sm mr-2">2</span>
-              Payment Method
-            </h3>
-            
-            <div className="p-5 bg-orange-50 border-2 border-orange-500 rounded-3xl relative">
-               <div className="absolute top-4 right-4 text-orange-500">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
-               </div>
-               <div className="flex items-center space-x-3">
-                  <span className="text-3xl">💵</span>
-                  <div>
-                    <p className="font-bold text-orange-900 uppercase tracking-tight">Cash on Delivery</p>
-                    <p className="text-xs text-orange-700">Recommended: Pay only when you receive.</p>
-                  </div>
-               </div>
-            </div>
-            <p className="text-[10px] text-gray-400 leading-tight">Courier will call you to confirm your location before delivery. Please keep exact cash ready.</p>
+          <div className="p-5 bg-orange-50 border border-orange-100 rounded-3xl flex items-center space-x-4">
+             <span className="text-3xl">🚚</span>
+             <div>
+               <p className="font-black text-orange-900 text-sm uppercase">Free Express Delivery</p>
+               <p className="text-[10px] text-orange-700 font-bold">Estimated Arrival: 2-3 Business Days</p>
+             </div>
           </div>
 
-          <div className="flex items-start space-x-3 pt-4">
+          <div className="flex items-start space-x-3 bg-gray-100/50 p-4 rounded-2xl">
              <input 
               required
               type="checkbox" 
@@ -216,38 +184,33 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
               checked={formData.confirmed}
               onChange={e => setFormData({...formData, confirmed: e.target.checked})}
             />
-             <label htmlFor="consent" className="text-xs text-gray-500 leading-relaxed cursor-pointer select-none">
-               I confirm that my address and phone number are correct and I agree to receive a confirmation call/message for this COD order.
+             <label htmlFor="consent" className="text-[10px] font-bold text-gray-500 leading-normal cursor-pointer select-none">
+               I AGREE TO PAY CASH ON DELIVERY. I confirm my phone number is correct for the delivery man to reach me.
              </label>
           </div>
         </form>
       </main>
 
       {/* STICKY FOOTER CTA */}
-      <div className="fixed bottom-0 left-0 w-full p-4 bg-white/90 backdrop-blur border-t border-gray-100 z-50">
+      <div className="fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-100 z-50">
         <div className="max-w-xl mx-auto">
           <button 
             type="submit"
             form="checkout-form"
             disabled={isPlacing}
-            className="w-full py-5 gradient-cta text-white font-black rounded-2xl shadow-xl shadow-orange-200 hover:scale-[1.02] transition-all text-lg flex items-center justify-center disabled:opacity-70"
+            className="w-full py-5 gradient-cta text-white font-black rounded-2xl shadow-xl shadow-orange-200 hover:scale-[1.01] active:scale-95 transition-all text-lg flex items-center justify-center disabled:opacity-70 disabled:grayscale"
           >
             {isPlacing ? (
               <span className="flex items-center">
                 <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                Placing Order...
+                Processing...
               </span>
             ) : (
-              `🛒 Confirm Order – Pay ${offer.price} AED`
+              `PROCEED TO ORDER - ${offer.price} AED`
             )}
           </button>
         </div>
       </div>
-
-      {/* Trust Footer */}
-      <footer className="w-full text-center py-8 pb-32 text-[10px] text-gray-400 uppercase tracking-widest font-bold">
-        🛡️ Secure SSL Checkout | We never ask for card details
-      </footer>
     </div>
   );
 };
