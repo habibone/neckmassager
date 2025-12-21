@@ -27,6 +27,17 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
     
     setIsPlacing(true);
 
+    // Manual date formatting: dd/mm/yy hour minutes seconds
+    const now = new Date();
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    const day = pad(now.getDate());
+    const month = pad(now.getMonth() + 1);
+    const year = now.getFullYear().toString().slice(-2);
+    const hours = pad(now.getHours());
+    const minutes = pad(now.getMinutes());
+    const seconds = pad(now.getSeconds());
+    const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+
     const payload = {
       fullName: formData.fullName,
       mobile: formData.mobile,
@@ -35,8 +46,8 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
       email: formData.email,
       orderItem: offer.name,
       quantity: offer.qty,
-      totalPrice: offer.price,
-      orderDate: new Date().toLocaleString('en-AE', { timeZone: 'Asia/Dubai' })
+      totalPrice: `${offer.price} AED`, // Explicit AED currency
+      orderDate: formattedDate // dd/mm/yy HH:mm:ss
     };
 
     try {
