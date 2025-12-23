@@ -94,7 +94,8 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
         </div>
       </header>
 
-      <main className="flex-1 w-full max-w-xl mx-auto px-6 py-8 space-y-8 pb-32">
+      <main className="flex-1 w-full max-w-xl mx-auto px-6 py-8 space-y-6 pb-32">
+        {/* Product Summary */}
         <section className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
           <div className="flex items-center space-x-4">
             <div className="w-16 h-16 bg-white rounded-xl overflow-hidden flex-shrink-0 border border-gray-50">
@@ -113,6 +114,24 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
             <span className="font-black text-xl text-gray-900">{offer.price} AED</span>
           </div>
         </section>
+
+        {/* COD Assurance Strip */}
+        <div className="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-3 flex flex-row items-center justify-between gap-1 shadow-sm">
+          <div className="flex items-center space-x-1.5 flex-1 justify-center">
+            <svg className="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+            <span className="text-[9px] font-black uppercase text-emerald-800 tracking-tighter whitespace-nowrap">Cash on Delivery</span>
+          </div>
+          <div className="h-4 w-px bg-emerald-200 shrink-0"></div>
+          <div className="flex items-center space-x-1.5 flex-1 justify-center">
+            <svg className="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+            <span className="text-[9px] font-black uppercase text-emerald-800 tracking-tighter whitespace-nowrap">No Advance Payment</span>
+          </div>
+          <div className="h-4 w-px bg-emerald-200 shrink-0"></div>
+          <div className="flex items-center space-x-1.5 flex-1 justify-center">
+            <svg className="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+            <span className="text-[9px] font-black uppercase text-emerald-800 tracking-tighter whitespace-nowrap">Pay After Receiving</span>
+          </div>
+        </div>
 
         <form id="checkout-form" onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
