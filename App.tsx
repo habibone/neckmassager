@@ -19,6 +19,7 @@ import AiAssistant from './components/AiAssistant';
 import CheckoutPage from './components/CheckoutPage';
 import SuccessPage from './components/SuccessPage';
 import SocialProofNotification from './components/SocialProofNotification';
+import ExitReminder from './components/ExitReminder';
 import { trackEvent } from './utils/analytics';
 
 export type ViewState = 'funnel' | 'checkout' | 'success';
@@ -135,7 +136,12 @@ const App: React.FC = () => {
         </div>
       </footer>
 
-      {view === 'funnel' && <SocialProofNotification />}
+      {view === 'funnel' && (
+        <>
+          <SocialProofNotification />
+          <ExitReminder />
+        </>
+      )}
 
       <StickyCTA onCtaClick={() => goToCheckout(DEFAULT_OFFER, 'sticky_cta')} />
       
