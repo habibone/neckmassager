@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
+import { trackEvent } from '../utils/analytics';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -30,9 +31,10 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
     setInput('');
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
     setIsTyping(true);
+    
+    trackEvent('ai_assistant_message', { query: userMessage });
 
     try {
-      // Create a new GoogleGenAI instance right before making an API call per guidelines
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',

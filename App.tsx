@@ -19,6 +19,7 @@ import AiAssistant from './components/AiAssistant';
 import CheckoutPage from './components/CheckoutPage';
 import SuccessPage from './components/SuccessPage';
 import SocialProofNotification from './components/SocialProofNotification';
+import { trackEvent } from './utils/analytics';
 
 export type ViewState = 'funnel' | 'checkout' | 'success';
 
@@ -38,14 +39,6 @@ const DEFAULT_OFFER: ProductOffer = {
   label: 'Standard Pack'
 };
 
-const BOGO_OFFER: ProductOffer = {
-  id: 'bogo',
-  name: 'ReliefPulse™ Bionic Massager (Special Bundle)',
-  price: 397,
-  qty: 2,
-  label: 'Buy 2 & Save Extra'
-};
-
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>('funnel');
   const [selectedOffer, setSelectedOffer] = useState<ProductOffer>(DEFAULT_OFFER);
@@ -54,25 +47,43 @@ const App: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (view === 'funnel') {
+      trackEvent('funnel_view');
+    }
   }, [view]);
 
-  const goToCheckout = (offer?: ProductOffer) => {
-    if (offer) {
-      setSelectedOffer(offer);
-    } else {
-      setSelectedOffer(DEFAULT_OFFER);
-    }
+  const goToCheckout = (offer?: ProductOffer, location?: string) => {
+    const activeOffer = offer || DEFAULT_OFFER;
+    setSelectedOffer(activeOffer);
+    
+    trackEvent('initiate_checkout', {
+      location: location || 'unknown',
+      offer_id: activeOffer.id,
+      offer_price: activeOffer.price
+    });
+    
     setView('checkout');
   };
 
   const handleOrderConfirmed = (details: any) => {
     setLastOrderDetails(details);
+    trackEvent('order_placed', {
+      offer_id: selectedOffer.id,
+      total_price: selectedOffer.price,
+      city: details.city
+    });
     setView('success');
   };
 
   const goToHome = () => {
     setLastOrderDetails(null);
     setView('funnel');
+  };
+
+  const toggleAi = () => {
+    const newState = !showAi;
+    setShowAi(newState);
+    if (newState) trackEvent('ai_assistant_open');
   };
 
   if (view === 'checkout') {
@@ -85,10 +96,10 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#f3f4f6] pb-32 md:pb-0">
-      <Header onCtaClick={() => goToCheckout(DEFAULT_OFFER)} />
+      <Header onCtaClick={() => goToCheckout(DEFAULT_OFFER, 'header')} />
       
       <main className="max-w-screen-xl mx-auto">
-        <Hero onCtaClick={goToCheckout} />
+        <Hero onCtaClick={(offer) => goToCheckout(offer, 'hero')} />
         <PainAgitation />
         <SolutionIntro />
         <FeaturesGrid />
@@ -98,7 +109,7 @@ const App: React.FC = () => {
         <SafetySection />
         <GiftSection />
         <SocialProof />
-        <OfferSection onCtaClick={() => goToCheckout(DEFAULT_OFFER)} />
+        <OfferSection onCtaClick={() => goToCheckout(DEFAULT_OFFER, 'bottom_offer')} />
         <FaqAccordion />
         <CheckoutTrust />
       </main>
@@ -124,14 +135,13 @@ const App: React.FC = () => {
         </div>
       </footer>
 
-      {/* Social Proof Notification - Hidden on Checkout/Success */}
       {view === 'funnel' && <SocialProofNotification />}
 
-      <StickyCTA onCtaClick={() => goToCheckout(DEFAULT_OFFER)} />
+      <StickyCTA onCtaClick={() => goToCheckout(DEFAULT_OFFER, 'sticky_cta')} />
       
       <div className="fixed bottom-32 right-6 z-40 md:bottom-10">
         <button 
-          onClick={() => setShowAi(!showAi)}
+          onClick={toggleAi}
           className="w-14 h-14 gradient-cta rounded-full shadow-2xl flex items-center justify-center text-white transform hover:scale-110 transition-transform ring-4 ring-orange-500/20"
         >
           {showAi ? (

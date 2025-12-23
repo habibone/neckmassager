@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { trackEvent } from '../utils/analytics';
 
 interface SuccessPageProps {
   orderDetails: any;
@@ -23,6 +24,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
     // Generate a professional reference code
     setRefCode(`RP-${Math.floor(100000 + Math.random() * 900000)}`);
     window.scrollTo(0, 0);
+    trackEvent('upsell_view');
   }, []);
 
   const businessPhone = "+16072351747";
@@ -34,16 +36,19 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
 
   const handleWhatsAppConfirm = () => {
     setIsConfirmed(true);
+    trackEvent('order_confirmed_whatsapp', { reference: refCode });
     window.open(whatsappUrl, '_blank');
   };
 
   const handleCallRequest = () => {
     setCallRequested(true);
+    trackEvent('order_confirmed_call', { reference: refCode });
     window.location.href = `tel:${businessPhone}`;
   };
 
   const handleAcceptUpsell = async () => {
     setIsUpdating(true);
+    trackEvent('upsell_accepted', { price: upsellPrice });
     
     // Log the upsell acceptance to the sheet
     try {
@@ -55,7 +60,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
         body: JSON.stringify({
           ...orderDetails,
           orderItem: `${orderDetails.orderItem} + [UPSELL: 1-Year Warranty]`,
-          totalPrice: `${finalTotal + upsellPrice} AED`,
+          totalPrice: `${basePrice + upsellPrice} AED`,
           status: '✨ Upsell Accepted - Pending Confirmation'
         }),
       });
@@ -65,6 +70,11 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
     } finally {
       setIsUpdating(false);
     }
+  };
+
+  const handleDeclineUpsell = () => {
+    setUpsellStatus('declined');
+    trackEvent('upsell_declined');
   };
 
   return (
@@ -154,7 +164,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
                     {isUpdating ? 'Adding...' : 'Yes, Add to My Order'}
                   </button>
                   <button 
-                    onClick={() => setUpsellStatus('declined')}
+                    onClick={handleDeclineUpsell}
                     className="w-full text-center text-[10px] text-gray-400 font-bold uppercase hover:text-gray-600 transition-colors"
                   >
                     No thanks, continue with basic order
