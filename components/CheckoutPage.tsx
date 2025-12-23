@@ -94,7 +94,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
         </div>
       </header>
 
-      <main className="flex-1 w-full max-w-xl mx-auto px-6 py-8 space-y-6 pb-32">
+      <main className="flex-1 w-full max-w-xl mx-auto px-6 py-8 space-y-6 pb-48">
         {/* Product Summary */}
         <section className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
           <div className="flex items-center space-x-4">
@@ -129,7 +129,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
           <div className="h-4 w-px bg-emerald-200 shrink-0"></div>
           <div className="flex items-center space-x-1.5 flex-1 justify-center">
             <svg className="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-            <span className="text-[9px] font-black uppercase text-emerald-800 tracking-tighter whitespace-nowrap">Pay After Receiving</span>
+            <span className="text-[9px] font-black uppercase text-emerald-800 tracking-tighter whitespace-nowrap">Open Parcel First</span>
           </div>
         </div>
 
@@ -224,7 +224,8 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
         </form>
       </main>
 
-      <div className="fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-100 z-50">
+      {/* Fixed Bottom Action Bar with Feature #6 Trust Box */}
+      <div className="fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-100 z-50 shadow-[0_-10px_20px_-5px_rgba(0,0,0,0.05)]">
         <div className="max-w-xl mx-auto flex flex-col space-y-3">
           {/* Dynamic Delivery Reassurance Message */}
           <div className="flex items-center justify-center space-x-2 text-gray-500 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -248,9 +249,27 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
                 Processing...
               </span>
             ) : (
-              `PLACE COD ORDER - ${offer.price} AED`
+              `CONFIRM ORDER - ${offer.price} AED`
             )}
           </button>
+
+          {/* Feature #6: COD Assurance Badge & Trust Box */}
+          <div className="bg-gray-50 border border-gray-200 rounded-xl p-2.5 flex flex-row items-center justify-between gap-2">
+            <div className="flex items-center space-x-1.5 flex-1 justify-center">
+              <svg className="w-3 h-3 text-gray-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
+              <span className="text-[8px] font-black uppercase text-gray-600 tracking-tighter whitespace-nowrap">Cash on Delivery</span>
+            </div>
+            <div className="w-px h-3 bg-gray-200"></div>
+            <div className="flex items-center space-x-1.5 flex-1 justify-center">
+              <svg className="w-3 h-3 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+              <span className="text-[8px] font-black uppercase text-gray-600 tracking-tighter whitespace-nowrap">No Advance Pay</span>
+            </div>
+            <div className="w-px h-3 bg-gray-200"></div>
+            <div className="flex items-center space-x-1.5 flex-1 justify-center">
+              <svg className="w-3 h-3 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+              <span className="text-[8px] font-black uppercase text-gray-600 tracking-tighter whitespace-nowrap">Open Parcel First</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
