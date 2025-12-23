@@ -17,6 +17,7 @@ import StickyCTA from './components/StickyCTA';
 import AiAssistant from './components/AiAssistant';
 import CheckoutPage from './components/CheckoutPage';
 import SuccessPage from './components/SuccessPage';
+import SocialProofNotification from './components/SocialProofNotification';
 
 export type ViewState = 'funnel' | 'checkout' | 'success';
 
@@ -120,6 +121,9 @@ const App: React.FC = () => {
           <p className="text-gray-600">© {new Date().getFullYear()} ReliefPulse. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Social Proof Notification - Hidden on Checkout/Success */}
+      {view === 'funnel' && <SocialProofNotification />}
 
       <StickyCTA onCtaClick={() => goToCheckout(DEFAULT_OFFER)} />
       
