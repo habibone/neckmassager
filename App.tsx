@@ -7,6 +7,7 @@ import SolutionIntro from './components/SolutionIntro';
 import FeaturesGrid from './components/FeaturesGrid';
 import ComparisonTable from './components/ComparisonTable';
 import HowItWorks from './components/HowItWorks';
+import UsageVideoSection from './components/UsageVideoSection';
 import SafetySection from './components/SafetySection';
 import GiftSection from './components/GiftSection';
 import SocialProof from './components/SocialProof';
@@ -93,6 +94,7 @@ const App: React.FC = () => {
         <FeaturesGrid />
         <ComparisonTable />
         <HowItWorks />
+        <UsageVideoSection />
         <SafetySection />
         <GiftSection />
         <SocialProof />
