@@ -7,7 +7,7 @@ interface StickyCTAProps {
 
 const StickyCTA: React.FC<StickyCTAProps> = ({ onCtaClick }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const phoneNumber = "+923174494443";
+  const phoneNumber = "+16072351747";
   const whatsappMsg = encodeURIComponent("Hi! I want to order the Portable Bionic Heated Neck & Back Massager (SKU: WB-UA1791). Please confirm COD availability and delivery time.");
 
   useEffect(() => {

@@ -17,7 +17,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
     window.scrollTo(0, 0);
   }, []);
 
-  const businessPhone = "+923174494443";
+  const businessPhone = "+16072351747";
   const whatsappMsg = encodeURIComponent(
     `YES, I confirm my COD order for the Portable Bionic Heated Neck & Back Massager.`
   );
