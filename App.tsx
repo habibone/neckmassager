@@ -82,7 +82,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3f4f6] pb-24 md:pb-0">
+    <div className="min-h-screen bg-[#f3f4f6] pb-32 md:pb-0">
       <Header onCtaClick={() => goToCheckout(DEFAULT_OFFER)} />
       
       <main className="max-w-screen-xl mx-auto">
@@ -123,7 +123,7 @@ const App: React.FC = () => {
 
       <StickyCTA onCtaClick={() => goToCheckout(DEFAULT_OFFER)} />
       
-      <div className="fixed bottom-24 right-6 z-40 md:bottom-10">
+      <div className="fixed bottom-32 right-6 z-40 md:bottom-10">
         <button 
           onClick={() => setShowAi(!showAi)}
           className="w-14 h-14 gradient-cta rounded-full shadow-2xl flex items-center justify-center text-white transform hover:scale-110 transition-transform ring-4 ring-orange-500/20"
