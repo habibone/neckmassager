@@ -47,6 +47,7 @@ const BOGO_OFFER: ProductOffer = {
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>('funnel');
   const [selectedOffer, setSelectedOffer] = useState<ProductOffer>(DEFAULT_OFFER);
+  const [lastOrderDetails, setLastOrderDetails] = useState<any>(null);
   const [showAi, setShowAi] = useState(false);
 
   useEffect(() => {
@@ -62,15 +63,22 @@ const App: React.FC = () => {
     setView('checkout');
   };
 
-  const goToSuccess = () => setView('success');
-  const goToHome = () => setView('funnel');
+  const handleOrderConfirmed = (details: any) => {
+    setLastOrderDetails(details);
+    setView('success');
+  };
+
+  const goToHome = () => {
+    setLastOrderDetails(null);
+    setView('funnel');
+  };
 
   if (view === 'checkout') {
-    return <CheckoutPage offer={selectedOffer} onConfirm={goToSuccess} onBack={goToHome} />;
+    return <CheckoutPage offer={selectedOffer} onConfirm={handleOrderConfirmed} onBack={goToHome} />;
   }
 
   if (view === 'success') {
-    return <SuccessPage onBackHome={goToHome} />;
+    return <SuccessPage orderDetails={lastOrderDetails} onBackHome={goToHome} />;
   }
 
   return (

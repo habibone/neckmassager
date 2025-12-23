@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const GiftSection: React.FC = () => {
@@ -27,7 +26,7 @@ const GiftSection: React.FC = () => {
            <div className="absolute inset-0 bg-orange-100 rounded-full blur-3xl opacity-30 transform scale-150"></div>
            <div className="rounded-3xl shadow-2xl relative z-10 hover:rotate-2 transition-transform duration-500 w-full overflow-hidden bg-white">
              <img 
-                src="https://supplipure.com/wp-content/uploads/2025/12/neckmessager5.png" 
+                src="http://supplipure.com/wp-content/uploads/2025/12/giftpackneckmassager.jpeg" 
                 alt="ReliefPulse Gift Package"
                 className="w-full h-full object-cover"
               />

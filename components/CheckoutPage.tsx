@@ -4,7 +4,7 @@ import { ProductOffer } from '../App';
 
 interface CheckoutPageProps {
   offer: ProductOffer;
-  onConfirm: () => void;
+  onConfirm: (orderDetails: any) => void;
   onBack: () => void;
 }
 
@@ -27,7 +27,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
     
     setIsPlacing(true);
 
-    // Manual date formatting: dd/mm/yy hour minutes seconds
+    // Manual date formatting: dd/mm/yy HH:mm:ss
     const now = new Date();
     const pad = (n: number) => n.toString().padStart(2, '0');
     const day = pad(now.getDate());
@@ -38,7 +38,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
     const seconds = pad(now.getSeconds());
     const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
-    const payload = {
+    const orderPayload = {
       fullName: formData.fullName,
       mobile: formData.mobile,
       city: formData.city,
@@ -46,16 +46,12 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
       email: formData.email,
       orderItem: offer.name,
       quantity: offer.qty,
-      totalPrice: `${offer.price} AED`, // Explicit AED currency
-      orderDate: formattedDate // dd/mm/yy HH:mm:ss
+      totalPrice: `${offer.price} AED`,
+      orderDate: formattedDate,
+      status: '🟡 Pending Confirmation' // Initial COD status
     };
 
     try {
-      /**
-       * Note: Google Apps Script Web Apps require 'no-cors' for POST requests from browsers 
-       * to avoid pre-flight (OPTIONS) errors. With 'no-cors', we cannot use 'application/json'.
-       * We send as 'text/plain' which is allowed and then JSON.parse it inside the script.
-       */
       await fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
         mode: 'no-cors',
@@ -63,12 +59,11 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
         headers: {
           'Content-Type': 'text/plain;charset=utf-8',
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(orderPayload),
       });
 
-      // With no-cors, the response is opaque (status 0). We treat a finished request as success.
       setIsPlacing(false);
-      onConfirm();
+      onConfirm(orderPayload);
     } catch (error) {
       console.error("Critical submission error:", error);
       setIsPlacing(false);
@@ -78,7 +73,6 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* HEADER */}
       <header className="bg-white border-b border-gray-200 py-6 px-6 shadow-sm">
         <div className="max-w-xl mx-auto text-center space-y-2 relative">
           <button onClick={onBack} className="absolute left-0 top-1 text-gray-400 hover:text-gray-600 p-2">
@@ -90,7 +84,6 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
       </header>
 
       <main className="flex-1 w-full max-w-xl mx-auto px-6 py-8 space-y-8 pb-32">
-        {/* ORDER SUMMARY */}
         <section className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
           <div className="flex items-center space-x-4">
             <div className="w-16 h-16 bg-white rounded-xl overflow-hidden flex-shrink-0 border border-gray-50">
@@ -110,7 +103,6 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
           </div>
         </section>
 
-        {/* CUSTOMER FORM */}
         <form id="checkout-form" onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <h3 className="text-lg font-black text-gray-900 uppercase tracking-tight">Delivery Address</h3>
@@ -202,7 +194,6 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
         </form>
       </main>
 
-      {/* STICKY FOOTER CTA */}
       <div className="fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-100 z-50">
         <div className="max-w-xl mx-auto">
           <button 
@@ -217,7 +208,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
                 Processing...
               </span>
             ) : (
-              `PROCEED TO ORDER - ${offer.price} AED`
+              `PLACE COD ORDER - ${offer.price} AED`
             )}
           </button>
         </div>
