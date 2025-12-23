@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ProductOffer } from '../App';
+import CountdownTimer from './CountdownTimer';
 
 interface HeroProps {
   onCtaClick?: (offer: ProductOffer) => void;
@@ -186,6 +187,9 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
 
             {/* Main CTA */}
             <div className="space-y-4 pt-2">
+               {/* Delivery Countdown Timer */}
+               <CountdownTimer />
+
                <button 
                 onClick={() => onCtaClick?.(offers[0])}
                 className="w-full py-6 gradient-cta text-white font-black text-xl rounded-2xl shadow-xl shadow-orange-200 transform hover:scale-[1.02] transition-all flex flex-col items-center justify-center uppercase tracking-tight"

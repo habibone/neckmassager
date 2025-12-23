@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import CountdownTimer from './CountdownTimer';
 
 interface OfferSectionProps {
   onCtaClick?: () => void;
@@ -55,12 +56,16 @@ const OfferSection: React.FC<OfferSectionProps> = ({ onCtaClick }) => {
               </div>
             </div>
 
-            <button 
-              onClick={onCtaClick}
-              className="w-full max-w-md py-6 gradient-cta rounded-2xl text-white font-black text-xl shadow-2xl hover:scale-105 transition-transform"
-            >
-              🔥 Order Now – Feel Relief Today
-            </button>
+            <div className="space-y-4">
+              <CountdownTimer className="bg-white/5 border-white/10 text-orange-400" />
+              
+              <button 
+                onClick={onCtaClick}
+                className="w-full max-w-md py-6 gradient-cta rounded-2xl text-white font-black text-xl shadow-2xl hover:scale-105 transition-transform"
+              >
+                🔥 Order Now – Feel Relief Today
+              </button>
+            </div>
             
             <div className="pt-4 flex flex-wrap justify-center gap-6">
               {['Cash on Delivery', 'Free Shipping', '7-Day Guarantee'].map(item => (
