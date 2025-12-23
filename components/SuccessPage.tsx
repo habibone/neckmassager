@@ -6,11 +6,19 @@ interface SuccessPageProps {
   onBackHome: () => void;
 }
 
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwRUzY-89O1fj4Yf6R6DBf_d9SlixxoBL9R_JRluwRcHbP-TafAZV-D1kjt5OVcJc8U/exec';
+
 const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) => {
   const [refCode, setRefCode] = useState('');
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [callRequested, setCallRequested] = useState(false);
+  const [upsellStatus, setUpsellStatus] = useState<'pending' | 'accepted' | 'declined'>('pending');
+  const [isUpdating, setIsUpdating] = useState(false);
   
+  const basePrice = parseInt(orderDetails.totalPrice);
+  const upsellPrice = 19;
+  const finalTotal = upsellStatus === 'accepted' ? basePrice + upsellPrice : basePrice;
+
   useEffect(() => {
     // Generate a professional reference code
     setRefCode(`RP-${Math.floor(100000 + Math.random() * 900000)}`);
@@ -19,7 +27,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
 
   const businessPhone = "+16072351747";
   const whatsappMsg = encodeURIComponent(
-    `YES, I confirm my COD order for the Portable Bionic Heated Neck & Back Massager.`
+    `YES, I confirm my COD order for the ReliefPulse™ Massager (Ref: ${refCode}).`
   );
 
   const whatsappUrl = `https://wa.me/${businessPhone.replace('+', '')}?text=${whatsappMsg}`;
@@ -31,14 +39,37 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
 
   const handleCallRequest = () => {
     setCallRequested(true);
-    // In a real system, you would send another fetch request here to update the Google Sheet status
-    // to "CALL REQUESTED" for the admin to see.
     window.location.href = `tel:${businessPhone}`;
+  };
+
+  const handleAcceptUpsell = async () => {
+    setIsUpdating(true);
+    
+    // Log the upsell acceptance to the sheet
+    try {
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        cache: 'no-cache',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          ...orderDetails,
+          orderItem: `${orderDetails.orderItem} + [UPSELL: 1-Year Warranty]`,
+          totalPrice: `${finalTotal + upsellPrice} AED`,
+          status: '✨ Upsell Accepted - Pending Confirmation'
+        }),
+      });
+      setUpsellStatus('accepted');
+    } catch (e) {
+      console.error("Upsell update failed", e);
+    } finally {
+      setIsUpdating(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-[#f9fafb] flex flex-col items-center py-8 px-4">
-      <div className="max-w-lg w-full space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="max-w-lg w-full space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
         
         {/* TOP STATUS HEADER */}
         <div className="text-center space-y-3">
@@ -65,7 +96,6 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
           </p>
           
           <div className="space-y-3">
-            {/* Option 1: WhatsApp */}
             <button 
               onClick={handleWhatsAppConfirm}
               className="w-full py-5 bg-[#25D366] text-white font-black rounded-2xl shadow-lg shadow-green-100 flex flex-col items-center justify-center hover:scale-[1.02] active:scale-95 transition-all group relative overflow-hidden"
@@ -78,7 +108,6 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
               <span className="text-[9px] opacity-90 mt-1 font-bold uppercase tracking-widest">Recommended Choice</span>
             </button>
 
-            {/* Option 2: Request Call */}
             <button 
               onClick={handleCallRequest}
               className="w-full py-5 bg-gray-100 text-gray-900 font-black rounded-2xl border-2 border-gray-200 flex flex-col items-center justify-center hover:bg-gray-200 transition-all active:scale-95"
@@ -91,17 +120,58 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
               </span>
             </button>
           </div>
-
-          <div className="flex items-center justify-center space-x-3 text-gray-300">
-            <span className="h-px w-full bg-gray-100"></span>
-            <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Security Check</span>
-            <span className="h-px w-full bg-gray-100"></span>
-          </div>
-
-          <p className="text-center text-[11px] text-gray-400 font-medium leading-relaxed px-4 italic">
-            "Your order details are safe with us. We only contact you to ensure valid delivery information."
-          </p>
         </div>
+
+        {/* Feature #7: Post-Checkout Upsell */}
+        {upsellStatus !== 'declined' && (
+          <div className={`bg-amber-50 border-2 border-dashed ${upsellStatus === 'accepted' ? 'border-green-500 bg-green-50' : 'border-amber-300'} rounded-[2rem] p-6 space-y-4 transition-all duration-500 overflow-hidden relative`}>
+            {upsellStatus === 'pending' ? (
+              <>
+                <div className="flex justify-between items-start">
+                  <div className="space-y-1">
+                    <h3 className="font-black text-gray-900 uppercase text-sm tracking-tight">Special Add-On for Your Order</h3>
+                    <p className="text-[10px] text-amber-800 font-bold">Add this now and receive it in the same delivery.</p>
+                  </div>
+                  <span className="bg-amber-500 text-white text-[10px] font-black px-2 py-1 rounded-lg shadow-sm">+19 AED</span>
+                </div>
+                
+                <div className="flex items-start space-x-4 py-2">
+                  <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-amber-100 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs font-black text-gray-800">1-Year Replacement Assurance</p>
+                    <p className="text-[10px] text-gray-500 leading-relaxed font-medium">If your device stops working for any reason, we'll send a brand new one—no questions asked.</p>
+                  </div>
+                </div>
+
+                <div className="pt-2 space-y-3">
+                  <button 
+                    onClick={handleAcceptUpsell}
+                    disabled={isUpdating}
+                    className="w-full py-4 bg-[#111827] text-white font-black rounded-xl text-xs uppercase tracking-widest shadow-lg hover:bg-black transition-all flex items-center justify-center"
+                  >
+                    {isUpdating ? 'Adding...' : 'Yes, Add to My Order'}
+                  </button>
+                  <button 
+                    onClick={() => setUpsellStatus('declined')}
+                    className="w-full text-center text-[10px] text-gray-400 font-bold uppercase hover:text-gray-600 transition-colors"
+                  >
+                    No thanks, continue with basic order
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center space-x-3 py-2 text-green-700 animate-in zoom-in duration-300">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                <div className="space-y-0.5">
+                  <p className="font-black uppercase text-sm">Assurance Added!</p>
+                  <p className="text-[10px] font-bold">Replacement warranty linked to Order {refCode}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* ORDER SUMMARY BOX */}
         <div className="space-y-3">
@@ -112,7 +182,14 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
              </div>
              <div className="flex justify-between items-center text-xs">
                <span className="text-gray-500 font-bold uppercase tracking-wider">Amount to Pay:</span>
-               <span className="text-lg font-black text-orange-600">{orderDetails.totalPrice} (COD)</span>
+               <div className="text-right">
+                  <span className="text-lg font-black text-orange-600 transition-all duration-500">
+                    {finalTotal} AED (COD)
+                  </span>
+                  {upsellStatus === 'accepted' && (
+                    <p className="text-[9px] text-green-600 font-bold uppercase tracking-tighter">+ Warranty Included</p>
+                  )}
+               </div>
              </div>
              <div className="pt-3 border-t border-gray-100 flex flex-col text-xs space-y-1">
                <p className="text-gray-400 font-bold">SHIPPING TO:</p>
