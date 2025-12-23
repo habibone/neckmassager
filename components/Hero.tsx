@@ -14,6 +14,7 @@ interface MediaItem {
 const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   const [viewers, setViewers] = useState(42);
   const [stockProgress, setStockProgress] = useState(85);
+  const [detectedCity, setDetectedCity] = useState<string | null>(null);
   
   const mainVideo = "https://supplipure.com/wp-content/uploads/2025/12/neck-messager.mp4";
   const secondaryImages = [
@@ -46,9 +47,19 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   ];
 
   useEffect(() => {
+    // Viewer simulation
     const interval = setInterval(() => {
       setViewers(prev => Math.max(30, Math.min(65, prev + (Math.random() > 0.5 ? 1 : -1))));
     }, 5000);
+
+    // Dynamic City Detection (IP Based fallback)
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.city) setDetectedCity(data.city);
+      })
+      .catch(() => console.log('Location detection skipped'));
+
     return () => clearInterval(interval);
   }, []);
 
@@ -84,7 +95,6 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
 
             {/* Thumbnails Gallery */}
             <div className="grid grid-cols-5 gap-2">
-              {/* Video Thumbnail */}
               <div 
                 onClick={() => setActiveMedia({ type: 'video', src: mainVideo })}
                 className={`aspect-square rounded-lg bg-gray-50 border-2 cursor-pointer overflow-hidden transition-all ${activeMedia.src === mainVideo ? 'border-orange-500' : 'border-transparent'}`}
@@ -92,7 +102,6 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                 <video src={mainVideo} muted playsInline className="w-full h-full object-cover" />
               </div>
               
-              {/* Image Thumbnails */}
               {secondaryImages.map((src, idx) => (
                 <div 
                   key={idx} 
@@ -182,7 +191,11 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                 className="w-full py-6 gradient-cta text-white font-black text-xl rounded-2xl shadow-xl shadow-orange-200 transform hover:scale-[1.02] transition-all flex flex-col items-center justify-center uppercase tracking-tight"
               >
                 <span>Add To Cart & Pay on Delivery</span>
-                <span className="text-[10px] opacity-80 mt-1 font-bold">Fast 2-3 Day Shipping in UAE</span>
+                <span className="text-[10px] opacity-80 mt-1 font-bold">
+                  {detectedCity 
+                    ? `🚚 Delivering to ${detectedCity} in 2-4 business days` 
+                    : "🚚 Fast Cash on Delivery across UAE"}
+                </span>
               </button>
               
               <div className="flex flex-wrap justify-center gap-6 pt-2 grayscale opacity-60">

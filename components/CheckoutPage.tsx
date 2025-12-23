@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ProductOffer } from '../App';
 
 interface CheckoutPageProps {
@@ -21,13 +21,24 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
     confirmed: false
   });
 
+  useEffect(() => {
+    // Attempt to pre-fill city via IP on mount
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.city && !formData.city) {
+          setFormData(prev => ({ ...prev, city: data.city }));
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.confirmed) return alert("Please confirm your details are correct.");
     
     setIsPlacing(true);
 
-    // Manual date formatting: dd/mm/yy HH:mm:ss
     const now = new Date();
     const pad = (n: number) => n.toString().padStart(2, '0');
     const day = pad(now.getDate());
@@ -48,7 +59,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
       quantity: offer.qty,
       totalPrice: `${offer.price} AED`,
       orderDate: formattedDate,
-      status: '🟡 Pending Confirmation' // Initial COD status
+      status: '🟡 Pending Confirmation'
     };
 
     try {
@@ -195,7 +206,17 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm, onBack })
       </main>
 
       <div className="fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-100 z-50">
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-xl mx-auto flex flex-col space-y-3">
+          {/* Dynamic Delivery Reassurance Message */}
+          <div className="flex items-center justify-center space-x-2 text-gray-500 animate-in fade-in slide-in-from-bottom-2 duration-500">
+            <span className="text-sm">🚚</span>
+            <span className="text-[10px] font-black uppercase tracking-widest">
+              {formData.city 
+                ? `Delivering to ${formData.city} in 2–4 business days` 
+                : "Fast Cash on Delivery across UAE"}
+            </span>
+          </div>
+
           <button 
             type="submit"
             form="checkout-form"
