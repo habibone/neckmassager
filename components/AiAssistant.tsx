@@ -42,7 +42,7 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
           { role: 'user', parts: [{ text: userMessage }] }
         ],
         config: {
-          systemInstruction: "You are a helpful eCommerce sales assistant for ReliefPulse, a portable heated neck massager. Its features: 4D kneading, Dual-zone heat, Cordless, 70 min battery, 15 min auto-shutoff, price 247 AED. Be professional, comforting, and focus on converting the user. Keep answers short and friendly.",
+          systemInstruction: "You are a helpful eCommerce sales assistant for ReliefPulse, a portable heated neck massager. Its features: 4D kneading, Dual-zone heat, Cordless, 70 min battery, 15 min auto-shutoff, price 300 AED. Be professional, comforting, and focus on converting the user. Keep answers short and friendly.",
         }
       });
 
@@ -50,7 +50,7 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
       setMessages(prev => [...prev, { role: 'assistant', text: aiText }]);
     } catch (error) {
       console.error("AI Error:", error);
-      setMessages(prev => [...prev, { role: 'assistant', text: "I'm having a little trouble connecting. But the 247 AED offer is still active!" }]);
+      setMessages(prev => [...prev, { role: 'assistant', text: "I'm having a little trouble connecting. But the 300 AED offer is still active!" }]);
     } finally {
       setIsTyping(false);
     }

@@ -44,7 +44,7 @@ const ComparisonTable: React.FC = () => {
           
           <div className="bg-orange-600 p-8 text-center">
             <p className="text-white font-black text-xl md:text-2xl uppercase italic tracking-tighter">
-              Get Professional Relief For Just 247 AED
+              Get Professional Relief For Just 300 AED
             </p>
           </div>
         </div>

@@ -35,7 +35,7 @@ export interface ProductOffer {
 const DEFAULT_OFFER: ProductOffer = {
   id: 'single',
   name: 'ReliefPulse™ Bionic Massager',
-  price: 247,
+  price: 300,
   qty: 1,
   label: 'Standard Pack'
 };

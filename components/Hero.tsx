@@ -34,14 +34,14 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
     {
       id: 'single',
       name: 'ReliefPulse™ Bionic Massager',
-      price: 247,
+      price: 300,
       qty: 1,
       label: 'Standard Pack'
     },
     {
       id: 'bogo',
       name: 'ReliefPulse™ Bionic Massager (Bundle Pack)',
-      price: 397,
+      price: 497,
       qty: 2,
       label: 'Buy 2 & Save Extra'
     }
@@ -131,8 +131,8 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             </div>
 
             <div className="flex items-center space-x-4">
-               <span className="text-4xl font-black text-[#ef4444]">247.00 AED</span>
-               <span className="text-xl text-gray-400 line-through">499.00 AED</span>
+               <span className="text-4xl font-black text-[#ef4444]">300.00 AED</span>
+               <span className="text-xl text-gray-400 line-through">599.00 AED</span>
                <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider">Save 50%</span>
             </div>
 
@@ -168,7 +168,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                       <p className="font-bold text-gray-900">1x Massager</p>
                       <p className="text-xs text-gray-500">Standard Pack</p>
                     </div>
-                    <span className="font-black text-gray-900">247 AED</span>
+                    <span className="font-black text-gray-900">300 AED</span>
                   </button>
                   
                   <button 
@@ -180,7 +180,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                       <p className="font-black text-orange-900">2x Massagers (Family Pack)</p>
                       <p className="text-xs text-orange-700">Perfect for Couples</p>
                     </div>
-                    <span className="font-black text-orange-600">397 AED</span>
+                    <span className="font-black text-orange-600">497 AED</span>
                   </button>
                </div>
             </div>

@@ -33,9 +33,9 @@ const OfferSection: React.FC<OfferSectionProps> = ({ onCtaClick }) => {
             <h2 className="text-3xl md:text-5xl font-extrabold">Limited-Time Comfort Offer</h2>
             
             <div className="flex flex-col items-center justify-center space-y-2">
-              <span className="text-xl text-gray-400 line-through">Original Price: 499 AED</span>
+              <span className="text-xl text-gray-400 line-through">Original Price: 599 AED</span>
               <div className="flex items-baseline space-x-2">
-                <span className="text-6xl font-black text-orange-500">247</span>
+                <span className="text-6xl font-black text-orange-500">300</span>
                 <span className="text-2xl font-bold text-orange-500">AED</span>
               </div>
               <p className="text-sm font-medium text-green-400 uppercase tracking-widest">You Save 50% Today</p>

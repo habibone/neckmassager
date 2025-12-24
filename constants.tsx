@@ -75,14 +75,14 @@ export const COMPARISON_DATA = {
     "42°C Intelligent Heating",
     "15 Intensity Levels",
     "Lightweight (160g)",
-    "247 AED Sale Price"
+    "300 AED Sale Price"
   ],
   them: [
     "Simple Vibration Only",
     "No Heat / Slow Heat",
     "2-3 Basic Modes",
     "Bulky & Heavy",
-    "499+ AED Retail"
+    "599+ AED Retail"
   ]
 };
 
