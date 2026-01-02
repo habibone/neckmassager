@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import PainAgitation from './components/PainAgitation';
@@ -18,11 +18,11 @@ import StickyCTA from './components/StickyCTA';
 import AiAssistant from './components/AiAssistant';
 import CheckoutPage from './components/CheckoutPage';
 import SuccessPage from './components/SuccessPage';
+import RefundPolicy from './components/RefundPolicy';
 import SocialProofNotification from './components/SocialProofNotification';
-import ExitReminder from './components/ExitReminder';
 import { trackEvent } from './utils/analytics';
 
-export type ViewState = 'funnel' | 'checkout' | 'success';
+export type ViewState = 'funnel' | 'success';
 
 export interface ProductOffer {
   id: string;
@@ -34,8 +34,8 @@ export interface ProductOffer {
 
 const DEFAULT_OFFER: ProductOffer = {
   id: 'single',
-  name: 'ReliefPulse™ Bionic Massager',
-  price: 300,
+  name: 'VibeSlim™ Pro Vibration Machine (SKU: WB-UA1734)',
+  price: 247,
   qty: 1,
   label: 'Standard Pack'
 };
@@ -45,25 +45,35 @@ const App: React.FC = () => {
   const [selectedOffer, setSelectedOffer] = useState<ProductOffer>(DEFAULT_OFFER);
   const [lastOrderDetails, setLastOrderDetails] = useState<any>(null);
   const [showAi, setShowAi] = useState(false);
+  const [showPolicy, setShowPolicy] = useState(false);
+  const checkoutRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     if (view === 'funnel') {
       trackEvent('funnel_view');
     }
   }, [view]);
 
-  const goToCheckout = (offer?: ProductOffer, location?: string) => {
-    const activeOffer = offer || DEFAULT_OFFER;
-    setSelectedOffer(activeOffer);
+  const scrollToCheckout = (offer?: ProductOffer, location?: string) => {
+    if (offer) {
+      setSelectedOffer(offer);
+    }
     
-    trackEvent('initiate_checkout', {
+    trackEvent('cta_click', {
       location: location || 'unknown',
-      offer_id: activeOffer.id,
-      offer_price: activeOffer.price
+      offer_id: (offer || selectedOffer).id
     });
-    
-    setView('checkout');
+
+    if (checkoutRef.current) {
+      const offset = 80;
+      const elementPosition = checkoutRef.current.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const handleOrderConfirmed = (details: any) => {
@@ -74,11 +84,13 @@ const App: React.FC = () => {
       city: details.city
     });
     setView('success');
+    window.scrollTo(0, 0);
   };
 
   const goToHome = () => {
     setLastOrderDetails(null);
     setView('funnel');
+    window.scrollTo(0, 0);
   };
 
   const toggleAi = () => {
@@ -87,20 +99,16 @@ const App: React.FC = () => {
     if (newState) trackEvent('ai_assistant_open');
   };
 
-  if (view === 'checkout') {
-    return <CheckoutPage offer={selectedOffer} onConfirm={handleOrderConfirmed} onBack={goToHome} />;
-  }
-
   if (view === 'success') {
     return <SuccessPage orderDetails={lastOrderDetails} onBackHome={goToHome} />;
   }
 
   return (
     <div className="min-h-screen bg-[#f3f4f6] pb-32 md:pb-0">
-      <Header onCtaClick={() => goToCheckout(DEFAULT_OFFER, 'header')} />
+      <Header onCtaClick={() => scrollToCheckout(DEFAULT_OFFER, 'header')} />
       
       <main className="max-w-screen-xl mx-auto">
-        <Hero onCtaClick={(offer) => goToCheckout(offer, 'hero')} />
+        <Hero onCtaClick={(offer) => scrollToCheckout(offer, 'hero')} />
         <PainAgitation />
         <SolutionIntro />
         <FeaturesGrid />
@@ -110,40 +118,44 @@ const App: React.FC = () => {
         <SafetySection />
         <GiftSection />
         <SocialProof />
-        <OfferSection onCtaClick={() => goToCheckout(DEFAULT_OFFER, 'bottom_offer')} />
+        <OfferSection onCtaClick={() => scrollToCheckout(DEFAULT_OFFER, 'bottom_offer')} />
         <FaqAccordion />
+        
+        <div ref={checkoutRef} id="checkout-section">
+          <CheckoutPage 
+            offer={selectedOffer} 
+            onConfirm={handleOrderConfirmed} 
+          />
+        </div>
+
         <CheckoutTrust />
       </main>
 
-      <footer className="bg-[#111827] text-gray-400 py-16 px-6 text-center text-sm">
+      <footer className="bg-white border-t border-gray-100 text-gray-500 py-16 px-6 text-center text-sm">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center space-x-2 mb-8">
             <div className="w-8 h-8 gradient-cta rounded-lg flex items-center justify-center">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <span className="text-2xl font-black tracking-tighter text-white">RELIEF<span className="text-orange-500">PULSE</span></span>
+            <span className="text-2xl font-black tracking-tighter text-[#111827]">VIBE<span className="text-orange-500">SLIM</span></span>
           </div>
-          <p className="mb-6 max-w-lg mx-auto leading-relaxed">Dedicated to bringing professional-grade therapy to your home, office, and travels. Pain relief shouldn't be a luxury.</p>
+          <p className="mb-6 max-w-lg mx-auto leading-relaxed text-gray-600 font-medium">Dedicated to bringing professional-grade fitness and therapy to your home. Wellness and health shouldn't be a struggle.</p>
           <div className="flex flex-wrap justify-center gap-6 mb-12 text-xs font-bold uppercase tracking-widest">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
-            <a href="#" className="hover:text-white transition-colors">Shipping</a>
-            <a href="#" className="hover:text-white transition-colors">Contact</a>
+            <button onClick={() => setShowPolicy(true)} className="hover:text-orange-600 transition-colors">Privacy Policy</button>
+            <button onClick={() => setShowPolicy(true)} className="hover:text-orange-600 transition-colors">Refund & Replacement</button>
+            <a href="#" className="hover:text-orange-600 transition-colors">Shipping</a>
+            <a href="#" className="hover:text-orange-600 transition-colors">Contact</a>
           </div>
-          <p className="text-gray-600">© {new Date().getFullYear()} ReliefPulse. All rights reserved.</p>
+          <p className="text-gray-400">© {new Date().getFullYear()} VibeSlim Pro (SKU: WB-UA1734). All rights reserved.</p>
         </div>
       </footer>
 
-      {view === 'funnel' && (
-        <>
-          <SocialProofNotification />
-          <ExitReminder />
-        </>
-      )}
+      {showPolicy && <RefundPolicy onClose={() => setShowPolicy(false)} />}
 
-      <StickyCTA onCtaClick={() => goToCheckout(DEFAULT_OFFER, 'sticky_cta')} />
+      <SocialProofNotification />
+      <StickyCTA onCtaClick={() => scrollToCheckout(DEFAULT_OFFER, 'sticky_cta')} />
       
       <div className="fixed bottom-32 right-6 z-40 md:bottom-10">
         <button 

@@ -14,7 +14,7 @@ interface AiAssistantProps {
 
 const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', text: "Hi! I'm your ReliefPulse assistant. Do you have any questions about our massager or how it can help with your neck pain?" }
+    { role: 'assistant', text: "Hi! I'm your VibeSlim Pro assistant. Ready to start your weight loss journey? Ask me about the 180 speed levels or the Bluetooth features!" }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -42,7 +42,7 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
           { role: 'user', parts: [{ text: userMessage }] }
         ],
         config: {
-          systemInstruction: "You are a helpful eCommerce sales assistant for ReliefPulse, a portable heated neck massager. Its features: 4D kneading, Dual-zone heat, Cordless, 70 min battery, 15 min auto-shutoff, price 300 AED. Be professional, comforting, and focus on converting the user. Keep answers short and friendly.",
+          systemInstruction: "You are a helpful eCommerce sales assistant for VibeSlim Pro, a weight loss vibration machine. SKU: WB-UA1734. Features: 180 speed levels, 3 channels (Walking, Jogging, Running), 400W silent motor, Bluetooth & USB music, Magnet physiotherapy for feet, Resistance bands included. Price: 247 AED. Goal: 10 mins/day, 3x/week for results. Be professional and encouraging. Keep answers short.",
         }
       });
 
@@ -50,7 +50,7 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
       setMessages(prev => [...prev, { role: 'assistant', text: aiText }]);
     } catch (error) {
       console.error("AI Error:", error);
-      setMessages(prev => [...prev, { role: 'assistant', text: "I'm having a little trouble connecting. But the 300 AED offer is still active!" }]);
+      setMessages(prev => [...prev, { role: 'assistant', text: "I'm having a little trouble connecting. But the 247 AED flash offer is still active!" }]);
     } finally {
       setIsTyping(false);
     }
@@ -58,15 +58,14 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
 
   return (
     <div className="fixed bottom-24 right-6 w-[calc(100vw-3rem)] md:w-96 h-[500px] bg-white rounded-3xl shadow-2xl z-50 flex flex-col overflow-hidden border border-gray-100">
-      {/* Header */}
       <div className="gradient-cta p-4 flex items-center justify-between text-white">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg>
           </div>
           <div>
-            <p className="text-sm font-bold">ReliefPulse Assistant</p>
-            <p className="text-[10px] opacity-80">Online | AI Powered</p>
+            <p className="text-sm font-bold">VibeSlim Assistant</p>
+            <p className="text-[10px] opacity-80">Online | Fitness Expert AI</p>
           </div>
         </div>
         <button onClick={onClose} className="p-1 hover:bg-white/10 rounded-lg">
@@ -74,7 +73,6 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
         </button>
       </div>
 
-      {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
         {messages.map((msg, idx) => (
           <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -100,7 +98,6 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
         )}
       </div>
 
-      {/* Input */}
       <div className="p-4 border-t border-gray-100 bg-white">
         <div className="relative">
           <input 
@@ -108,7 +105,7 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-            placeholder="Ask a question..."
+            placeholder="Ask about speeds, setup, music..."
             className="w-full pl-4 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20"
           />
           <button 

@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
     setIsMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Offset for sticky header
+      const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -28,16 +28,15 @@ const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
 
   const navLinks = [
     { name: 'Features', id: 'features' },
-    { name: 'The Difference', id: 'comparison' },
-    { name: 'Reviews', id: 'reviews' }
+    { name: 'Comparison', id: 'comparison' },
+    { name: 'FAQ', id: 'reviews' }
   ];
 
   return (
     <div className="w-full">
-      {/* Announcement Bar */}
-      <div className="bg-[#ef4444] text-white py-2 px-4 text-center text-xs md:text-sm font-bold uppercase tracking-widest overflow-hidden">
+      <div className="bg-[#ef4444] text-white py-2 px-4 text-center text-[10px] md:text-xs font-black uppercase tracking-widest overflow-hidden">
         <div className="animate-pulse whitespace-nowrap">
-          ⚡ SPECIAL OFFER: 50% OFF + FREE SHIPPING TODAY ONLY! ⚡
+          ⚡ 50% OFF + FREE SHIPPING TODAY - CASH ON DELIVERY ACROSS UAE ⚡
         </div>
       </div>
       
@@ -46,20 +45,20 @@ const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
           <div className="flex items-center space-x-2">
             <div className="w-9 h-9 gradient-cta rounded-xl flex items-center justify-center shadow-lg shadow-orange-200">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <span className="text-xl font-black tracking-tighter text-[#111827]">RELIEF<span className="text-orange-500">PULSE</span></span>
+            <span className="text-xl font-black tracking-tighter text-[#111827]">VIBE<span className="text-orange-500">SLIM</span></span>
           </div>
           
           <div className="flex items-center space-x-4 md:space-x-6">
-            <nav className="hidden md:flex space-x-8 text-sm font-bold text-gray-700">
+            <nav className="hidden md:flex space-x-8 text-[10px] font-black text-gray-700 uppercase tracking-widest">
               {navLinks.map((link) => (
                 <a 
                   key={link.id}
                   href={`#${link.id}`} 
                   onClick={(e) => scrollToSection(e, link.id)}
-                  className="hover:text-orange-600 transition-colors uppercase"
+                  className="hover:text-orange-600 transition-colors"
                 >
                   {link.name}
                 </a>
@@ -68,12 +67,11 @@ const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
             
             <button 
               onClick={onCtaClick}
-              className="gradient-cta px-4 py-2 rounded-lg text-white text-xs font-bold shadow-md hover:scale-105 transition-transform uppercase"
+              className="gradient-cta px-4 py-2 rounded-lg text-white text-[10px] font-black shadow-md hover:scale-105 transition-transform uppercase tracking-widest"
             >
-              Get 50% Off
+              Order COD
             </button>
 
-            {/* Mobile Menu Toggle */}
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 text-gray-700 hover:text-orange-600 transition-colors"
@@ -88,8 +86,7 @@ const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
           </div>
         </div>
 
-        {/* Mobile Navigation Overlay */}
-        <div className={`fixed inset-0 top-[110px] z-40 bg-white/95 backdrop-blur-xl md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
+        <div className={`fixed inset-0 top-[100px] z-40 bg-white/95 backdrop-blur-xl md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
           <nav className="flex flex-col items-center justify-center space-y-8 p-12 text-2xl font-black text-gray-900 uppercase tracking-tighter">
             {navLinks.map((link) => (
               <a 
@@ -102,12 +99,11 @@ const Header: React.FC<HeaderProps> = ({ onCtaClick }) => {
               </a>
             ))}
             <div className="w-12 h-1 bg-orange-100 rounded-full"></div>
-            <p className="text-xs text-gray-400 font-bold tracking-[0.2em]">Ready for Relief?</p>
             <button 
               onClick={onCtaClick}
-              className="w-full max-w-xs py-4 gradient-cta text-white rounded-2xl shadow-xl font-black text-lg"
+              className="w-full max-w-xs py-4 gradient-cta text-white rounded-2xl shadow-xl font-black text-lg uppercase tracking-tight"
             >
-              Claim 50% Discount
+              Order Now - Pay on Delivery
             </button>
           </nav>
         </div>

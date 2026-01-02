@@ -5,98 +5,89 @@ import { Feature, Review, FaqItem } from './types';
 export const REVIEWS: Review[] = [
   {
     id: '1',
-    name: 'Sarah M.',
+    name: 'Rana Dabbas',
     rating: 5,
-    comment: 'Literally saved my neck after long office hours. The heat function is heavenly.',
-    location: 'Dubai, UAE',
-    avatar: 'https://picsum.photos/seed/sarah/100/100'
+    comment: 'Very good vibration plate. Does the job perfectly but manual is in russian. Not a problem for me since it is very intuitive to use.',
+    location: 'United Arab Emirates',
+    avatar: 'https://picsum.photos/seed/rana/100/100'
   },
   {
     id: '2',
-    name: 'Ahmed K.',
+    name: 'Dody',
     rating: 5,
-    comment: 'Better than a real massage because I can use it while watching TV. Worth every fils.',
-    location: 'Abu Dhabi, UAE',
-    avatar: 'https://picsum.photos/seed/ahmed/100/100'
+    comment: 'جيد استخدمة صباحا لتنشيط الدورة الدموية (Used it in the morning to stimulate blood circulation, very effective and simple).',
+    location: 'United Arab Emirates',
+    avatar: 'https://picsum.photos/seed/dody/100/100'
   },
   {
     id: '3',
-    name: 'Jessica L.',
-    rating: 4,
-    comment: 'Super portable. I take it on flights and it makes traveling so much more comfortable.',
-    location: 'Sharjah, UAE',
-    avatar: 'https://picsum.photos/seed/jess/100/100'
+    name: 'tanya',
+    rating: 5,
+    comment: 'Was sitting on buying this for sometime - happy i finally did. Sturdy, well built machine. Good vibrations and settings. Easy to use. Day 4 - and very happy - using 10 minutes in morning and evening, while watching TV.',
+    location: 'United Arab Emirates',
+    avatar: 'https://picsum.photos/seed/tanya/100/100'
   }
 ];
 
 export const FEATURES: Feature[] = [
   {
-    title: 'TENS + EMS Pulse',
-    description: 'Advanced dual-pulse technology targets deep muscle tissue to block pain signals instantly.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    )
+    title: '180 Speed Levels',
+    description: 'Find your perfect pace with 180 levels. Can support daily movement goals for everyone.',
+    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png" className="w-full h-full object-contain" alt="180 Speeds" />
   },
   {
-    title: '42°C Constant Heat',
-    description: 'Built-in thermostat provides soothing warmth to improve circulation and melt away stiffness.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.99 7.99 0 0120 13a7.98 7.98 0 01-2.343 5.657z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
-      </svg>
-    )
+    title: '3 Training Modes',
+    description: 'Choose between Walking, Jogging, or Running modes to match your comfort level.',
+    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png" className="w-full h-full object-contain" alt="3 Modes" />
   },
   {
-    title: '360° Ergonomic Fit',
-    description: 'U-shaped suspension design adapts to any neck size for maximum contact and comfort.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-      </svg>
-    )
+    title: 'Bluetooth & USB Music',
+    description: 'Connect your phone easily. Enjoy your favorite songs through the built-in speakers while you move.',
+    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71izkp6Q2tL._AC_SL1500-1.webp" className="w-full h-full object-cover rounded-full" alt="Music" />
   },
   {
-    title: 'USB Fast Charge',
-    description: 'One charge gives you 15 days of use (15 mins/day). Conveniently charge anywhere.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    )
+    title: 'Silent 400W Motor',
+    description: 'Powerful yet quiet. Use it anytime at home without disturbing your family or neighbors.',
+    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png" className="w-full h-full object-contain" alt="Silent Motor" />
   }
 ];
 
 export const COMPARISON_DATA = {
   us: [
-    "TENS + EMS Technology",
-    "42°C Intelligent Heating",
-    "15 Intensity Levels",
-    "Lightweight (160g)",
-    "300 AED Sale Price"
+    "180 Speed Levels + 3 Modes",
+    "Smart Band & Resistance Bands Included",
+    "Bluetooth & USB Music Built-in",
+    "Silent 400W Motor with Safety Tech",
+    "247 AED - Best Value in UAE"
   ],
   them: [
-    "Simple Vibration Only",
-    "No Heat / Slow Heat",
-    "2-3 Basic Modes",
-    "Bulky & Heavy",
-    "599+ AED Retail"
+    "Only 1 or 2 Speeds",
+    "No Accessories Included",
+    "No Music / No Speakers",
+    "Noisy & Bulky Design",
+    "600+ AED Retail Price"
   ]
 };
 
 export const FAQ: FaqItem[] = [
   {
-    question: "Does it hurt or shock?",
-    answer: "The TENS technology uses gentle electrical pulses. You may feel a slight tingling sensation, which is normal and indicates the muscles are being stimulated. Always start at intensity level 1."
+    question: "Is it easy to use?",
+    answer: "Yes, it is very simple. Just plug it in, stand on the platform, and use the remote to select your speed. It is perfect for home use."
   },
   {
-    question: "How long should I use it?",
-    answer: "We recommend 15 minutes per session. The device has an automatic shut-off timer for your safety."
+    question: "Is it good for beginners?",
+    answer: "Absolutely. With 180 speed levels, you can start very slowly. It is designed for everyone, even if you do not exercise often."
   },
   {
-    question: "Is it suitable for everyone?",
-    answer: "Most people can use it safely. However, people with pacemakers or pregnant women should consult a doctor first."
+    question: "Is Cash on Delivery available in UAE?",
+    answer: "Yes! We offer Cash on Delivery across all Emirates. You only pay when the driver delivers the machine to your door."
+  },
+  {
+    question: "Does it make noise?",
+    answer: "No, it features a 400W ultra-silent motor. You can use it while watching TV or even while others are nearby."
+  },
+  {
+    question: "What comes in the box?",
+    answer: "You get the VibeSlim Pro Machine, a Smart Band (App supported), 2 Resistance Bands for arm movement, and the power cable."
   }
 ];

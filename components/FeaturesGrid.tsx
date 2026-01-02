@@ -1,32 +1,125 @@
 
 import React from 'react';
-import { FEATURES } from '../constants';
 
 const FeaturesGrid: React.FC = () => {
+  const benefitPoints = [
+    {
+      title: "180 Precision Speed Levels",
+      desc: "Fine-tune your intensity with 180 levels. Whether you want a relaxing massage or an intense fat-burning workout, you have total control.",
+      icon: "⚡"
+    },
+    {
+      title: "Smart Bluetooth Surround Sound",
+      desc: "Exercise is better with music. Connect your phone instantly and enjoy high-fidelity sound while you burn calories.",
+      icon: "🎵"
+    },
+    {
+      title: "Quiet 400W High-Torque Motor",
+      desc: "Engineered for silent performance. Use it in the living room while watching TV or in the bedroom without waking anyone.",
+      icon: "🤫"
+    },
+    {
+      title: "3 Pro Training Modes",
+      desc: "Choose between Walking, Jogging, or Running modes. The platform mimics different terrains to challenge your muscles effectively.",
+      icon: "🏃"
+    },
+    {
+      title: "Reflexology Magnetic Therapy",
+      desc: "Built-in therapy magnets target key pressure points on your feet, supporting circulation and helping you feel refreshed.",
+      icon: "🧲"
+    }
+  ];
+
   return (
-    <section id="features" className="py-24 px-6 bg-gray-50">
+    <section id="features" className="py-24 px-6 bg-white overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-3xl md:text-5xl font-black text-[#111827] uppercase tracking-tighter">Engineered for <span className="text-orange-600">Total Comfort</span></h2>
-          <p className="text-gray-500 max-w-2xl mx-auto font-medium">Why ReliefPulse is the #1 choice for recovery in the UAE.</p>
+          <p className="text-orange-600 font-black uppercase tracking-[0.3em] text-xs">Premium Features</p>
+          <h2 className="text-3xl md:text-5xl font-black text-[#111827] uppercase tracking-tighter leading-tight">
+            Everything You Need For <br/>
+            <span className="text-gradient">Maximum Results At Home</span>
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto font-medium text-lg">
+            We've packed the VibeSlim™ Pro with professional features to ensure your fitness journey is simple, effective, and fun.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-          {FEATURES.map((feature) => (
-            <div key={feature.title} className="text-center space-y-6 group">
-              <div className="w-24 h-24 mx-auto bg-white rounded-full border border-gray-100 shadow-lg flex items-center justify-center text-orange-500 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
-                {feature.icon}
+        <div className="flex flex-col lg:flex-row items-center gap-16">
+          {/* Left: Compelling Image with Badge */}
+          <div className="flex-1 relative order-2 lg:order-1">
+            <div className="absolute -inset-4 bg-orange-100/50 rounded-[3rem] blur-2xl z-0"></div>
+            <div className="relative z-10 rounded-[3rem] overflow-hidden border border-orange-100 shadow-2xl bg-white">
+              <img 
+                src="http://images.supplipure.com/wp-content/uploads/2026/01/Maximum-Results-At-Home.png" 
+                alt="VibeSlim Pro Professional Features" 
+                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-lg border border-orange-100 flex items-center space-x-2">
+                <span className="text-orange-500 font-black">2026</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Premium Edition</span>
               </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-black text-[#111827] uppercase tracking-tight">{feature.title}</h3>
-                <p className="text-gray-500 leading-relaxed text-sm">
-                  {feature.description}
+            </div>
+            
+            {/* Feature Callouts positioned around image for desktop */}
+            <div className="hidden xl:block absolute -right-8 top-1/4 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 z-20 animate-bounce-slow">
+              <p className="text-[10px] font-black uppercase text-orange-600 mb-1">Max Power</p>
+              <p className="text-sm font-bold text-gray-800">400W Silent Motor</p>
+            </div>
+            <div className="hidden xl:block absolute -left-8 bottom-1/4 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 z-20 animate-bounce-slow delay-1000">
+              <p className="text-[10px] font-black uppercase text-orange-600 mb-1">Smart Tech</p>
+              <p className="text-sm font-bold text-gray-800">Bluetooth Connect</p>
+            </div>
+          </div>
+
+          {/* Right: Compelling Content List */}
+          <div className="flex-1 order-1 lg:order-2 space-y-8">
+            <div className="grid gap-8">
+              {benefitPoints.map((benefit, idx) => (
+                <div key={idx} className="flex items-start space-x-5 group">
+                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-orange-50 flex items-center justify-center text-2xl shadow-sm border border-orange-100 group-hover:scale-110 group-hover:bg-orange-100 transition-all duration-300">
+                    {benefit.icon}
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="text-xl font-black text-[#111827] uppercase tracking-tight group-hover:text-orange-600 transition-colors">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm font-medium">
+                      {benefit.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-6">
+              <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100 flex items-center justify-between">
+                <div className="flex -space-x-3">
+                  {[1,2,3,4].map(i => (
+                    <img key={i} src={`https://picsum.photos/seed/${i + 10}/100/100`} className="w-10 h-10 rounded-full border-2 border-white" alt="user" />
+                  ))}
+                  <div className="w-10 h-10 rounded-full bg-orange-500 text-white text-[10px] font-black flex items-center justify-center border-2 border-white">+2K</div>
+                </div>
+                <p className="text-xs font-bold text-gray-500 uppercase tracking-widest text-right">
+                  Joined by 2,000+ <br/>Users in the UAE
                 </p>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
+      
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 4s infinite ease-in-out;
+        }
+        .delay-1000 {
+          animation-delay: 1s;
+        }
+      `}} />
     </section>
   );
 };
