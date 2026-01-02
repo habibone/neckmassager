@@ -45,7 +45,7 @@ const FeaturesGrid: React.FC = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row items-center gap-16">
-          {/* Left: Compelling Image with Badge */}
+          {/* Left: Image with Badge */}
           <div className="flex-1 relative order-2 lg:order-1">
             <div className="absolute -inset-4 bg-orange-100/50 rounded-[3rem] blur-2xl z-0"></div>
             <div className="relative z-10 rounded-[3rem] overflow-hidden border border-orange-100 shadow-2xl bg-white">
@@ -58,16 +58,6 @@ const FeaturesGrid: React.FC = () => {
                 <span className="text-orange-500 font-black">2026</span>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Premium Edition</span>
               </div>
-            </div>
-            
-            {/* Feature Callouts positioned around image for desktop */}
-            <div className="hidden xl:block absolute -right-8 top-1/4 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 z-20 animate-bounce-slow">
-              <p className="text-[10px] font-black uppercase text-orange-600 mb-1">Max Power</p>
-              <p className="text-sm font-bold text-gray-800">400W Silent Motor</p>
-            </div>
-            <div className="hidden xl:block absolute -left-8 bottom-1/4 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 z-20 animate-bounce-slow delay-1000">
-              <p className="text-[10px] font-black uppercase text-orange-600 mb-1">Smart Tech</p>
-              <p className="text-sm font-bold text-gray-800">Bluetooth Connect</p>
             </div>
           </div>
 
@@ -107,19 +97,6 @@ const FeaturesGrid: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        .animate-bounce-slow {
-          animation: bounce-slow 4s infinite ease-in-out;
-        }
-        .delay-1000 {
-          animation-delay: 1s;
-        }
-      `}} />
     </section>
   );
 };

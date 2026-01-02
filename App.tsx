@@ -15,7 +15,6 @@ import OfferSection from './components/OfferSection';
 import FaqAccordion from './components/FaqAccordion';
 import CheckoutTrust from './components/CheckoutTrust';
 import StickyCTA from './components/StickyCTA';
-import AiAssistant from './components/AiAssistant';
 import CheckoutPage from './components/CheckoutPage';
 import SuccessPage from './components/SuccessPage';
 import RefundPolicy from './components/RefundPolicy';
@@ -44,7 +43,6 @@ const App: React.FC = () => {
   const [view, setView] = useState<ViewState>('funnel');
   const [selectedOffer, setSelectedOffer] = useState<ProductOffer>(DEFAULT_OFFER);
   const [lastOrderDetails, setLastOrderDetails] = useState<any>(null);
-  const [showAi, setShowAi] = useState(false);
   const [showPolicy, setShowPolicy] = useState(false);
   const checkoutRef = useRef<HTMLDivElement>(null);
 
@@ -91,12 +89,6 @@ const App: React.FC = () => {
     setLastOrderDetails(null);
     setView('funnel');
     window.scrollTo(0, 0);
-  };
-
-  const toggleAi = () => {
-    const newState = !showAi;
-    setShowAi(newState);
-    if (newState) trackEvent('ai_assistant_open');
   };
 
   if (view === 'success') {
@@ -156,21 +148,6 @@ const App: React.FC = () => {
 
       <SocialProofNotification />
       <StickyCTA onCtaClick={() => scrollToCheckout(DEFAULT_OFFER, 'sticky_cta')} />
-      
-      <div className="fixed bottom-32 right-6 z-40 md:bottom-10">
-        <button 
-          onClick={toggleAi}
-          className="w-14 h-14 gradient-cta rounded-full shadow-2xl flex items-center justify-center text-white transform hover:scale-110 transition-transform ring-4 ring-orange-500/20"
-        >
-          {showAi ? (
-             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-          ) : (
-             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
-          )}
-        </button>
-      </div>
-
-      {showAi && <AiAssistant onClose={() => setShowAi(false)} />}
     </div>
   );
 };

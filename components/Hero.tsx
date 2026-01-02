@@ -8,7 +8,7 @@ interface HeroProps {
 }
 
 interface MediaItem {
-  type: 'image' | 'video';
+  type: 'image';
   src: string;
 }
 
@@ -17,19 +17,20 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   const [stockProgress, setStockProgress] = useState(85);
   const [detectedCity, setDetectedCity] = useState<string | null>(null);
   
-  const heroVideo = "http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate.mp4";
-  const mainImage = "http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png";
+  // New requested main image
+  const mainImage = "http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp";
 
   const [activeMedia, setActiveMedia] = useState<MediaItem>({
-    type: 'video',
-    src: heroVideo
+    type: 'image',
+    src: mainImage
   });
 
   const secondaryImages = [
+    "http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp",
+    "http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp",
     "http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png",
     "http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71izkp6Q2tL._AC_SL1500-1.webp",
-    "http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png",
-    "http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp"
+    "http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png"
   ];
 
   const offers: ProductOffer[] = [
@@ -70,50 +71,25 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
         <div className="flex flex-col lg:flex-row gap-10">
           <div className="flex-1 space-y-4">
             <div className="aspect-square rounded-2xl overflow-hidden bg-white border border-gray-100 group relative flex items-center justify-center">
-              {activeMedia.type === 'video' ? (
-                <video 
-                  key={activeMedia.src}
-                  src={activeMedia.src} 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline
-                  poster={mainImage}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              ) : (
-                <img 
-                  key={activeMedia.src}
-                  src={activeMedia.src} 
-                  className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700"
-                  alt="Product view"
-                />
-              )}
+              <img 
+                key={activeMedia.src}
+                src={activeMedia.src} 
+                className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                alt="Product view"
+              />
               <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider pointer-events-none">
-                {activeMedia.type === 'video' ? 'Live Demo' : 'HD Photo'}
+                HD Photo
               </div>
             </div>
 
             <div className="grid grid-cols-5 gap-2">
-              <div 
-                onClick={() => setActiveMedia({ type: 'video', src: heroVideo })}
-                className={`aspect-square rounded-lg bg-gray-50 border-2 cursor-pointer overflow-hidden transition-all flex items-center justify-center ${activeMedia.src === heroVideo ? 'border-orange-500' : 'border-transparent'}`}
-              >
-                <div className="relative w-full h-full">
-                  <img src={mainImage} className="w-full h-full object-cover opacity-50" alt="Video thumb" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168l4.223 2.815a.5.5 0 010 .834l-4.223 2.815a.5.5 0 01-.755-.417V7.585a.5.5 0 01.755-.417z"/></svg>
-                  </div>
-                </div>
-              </div>
-              
               {secondaryImages.map((src, idx) => (
                 <div 
                   key={idx} 
                   onClick={() => setActiveMedia({ type: 'image', src })}
                   className={`aspect-square rounded-lg bg-gray-50 border-2 cursor-pointer overflow-hidden transition-all flex items-center justify-center ${activeMedia.src === src ? 'border-orange-500' : 'border-transparent hover:border-orange-200'}`}
                 >
-                   <img src={src} className="w-full h-full object-contain p-1" alt={`Product detail ${idx + 2}`} />
+                   <img src={src} className="w-full h-full object-contain p-1" alt={`Product detail ${idx + 1}`} />
                 </div>
               ))}
             </div>
@@ -164,10 +140,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
 
             <div className="p-4 bg-orange-50 rounded-2xl border border-orange-100 space-y-3">
               <div className="flex items-center justify-center lg:justify-start space-x-2 text-sm text-orange-800 font-bold">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
-                </span>
+                <div className="w-2 h-2 rounded-full bg-orange-600"></div>
                 <span>{viewers} people are viewing this machine now!</span>
               </div>
               <div className="space-y-1">

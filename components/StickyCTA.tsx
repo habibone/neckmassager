@@ -7,7 +7,7 @@ interface StickyCTAProps {
 
 const StickyCTA: React.FC<StickyCTAProps> = ({ onCtaClick }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const phoneNumber = "+16072351747";
+  const phoneNumber = "16072351747";
   const whatsappMsg = encodeURIComponent("Hi! I want to order the VibeSlim™ Pro Vibration Machine (SKU: WB-UA1734). Please confirm Cash on Delivery for my area.");
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const StickyCTA: React.FC<StickyCTAProps> = ({ onCtaClick }) => {
 
       <div className="bg-white border-t border-gray-100 p-3 shadow-[0_-10px_30px_-5px_rgba(0,0,0,0.15)] rounded-t-[1.5rem] flex gap-2">
         <a 
-          href={`https://wa.me/${phoneNumber.replace('+', '')}?text=${whatsappMsg}`}
+          href={`https://wa.me/${phoneNumber}?text=${whatsappMsg}`}
           target="_blank"
           rel="noopener noreferrer"
           className="w-14 h-14 shrink-0 flex items-center justify-center bg-green-500 rounded-xl text-white shadow-lg active:scale-95 transition-all"

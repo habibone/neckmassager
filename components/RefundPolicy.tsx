@@ -117,7 +117,7 @@ const RefundPolicy: React.FC<RefundPolicyProps> = ({ onClose }) => {
             <div className="pl-0 space-y-2">
               <p>If you have any questions regarding this policy or need assistance with a replacement request, please contact us:</p>
               <div className="bg-orange-50 p-6 rounded-2xl space-y-2 border border-orange-100">
-                <p className="font-bold text-gray-900">WhatsApp: <a href="tel:+971507518901" className="text-orange-600">+971 50 751 8901</a></p>
+                <p className="font-bold text-gray-900">WhatsApp: <a href="tel:+16072351747" className="text-orange-600">+1 607 235 1747</a></p>
                 <p className="font-bold text-gray-900">Warehouse Address: <br/><span className="font-medium text-gray-600">Warehouse No. 13, Street No. 4 – 4th Street, Al Khabaisi, Dubai, UAE</span></p>
               </div>
               <p className="text-xs font-bold text-gray-400 italic">Kindly retain your order number and store name for quicker assistance.</p>

@@ -20,12 +20,12 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
     window.scrollTo(0, 0);
   }, []);
 
-  const businessPhone = "+16072351747";
+  const businessPhone = "16072351747";
   const whatsappMsg = encodeURIComponent(
     `YES, I confirm my COD order for the VibeSlim™ Pro (Ref: ${refCode}).`
   );
 
-  const whatsappUrl = `https://wa.me/${businessPhone.replace('+', '')}?text=${whatsappMsg}`;
+  const whatsappUrl = `https://wa.me/${businessPhone}?text=${whatsappMsg}`;
 
   const handleWhatsAppConfirm = () => {
     setIsConfirmed(true);
@@ -36,7 +36,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
   const handleCallRequest = () => {
     setCallRequested(true);
     trackEvent('order_confirmed_call', { reference: refCode });
-    window.location.href = `tel:${businessPhone}`;
+    window.location.href = `tel:+16072351747`;
   };
 
   return (
