@@ -81,158 +81,138 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
   };
 
   return (
-    <section className="py-24 px-6 bg-white border-t border-gray-100">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12 space-y-2">
-          <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter uppercase">Step 2: Complete Your Order</h2>
-          <p className="text-emerald-600 font-bold text-sm uppercase tracking-widest">Fast Delivery & Cash on Delivery Across UAE</p>
+    <section className="py-24 px-4 md:px-6 bg-[#fff2e8] border-t border-orange-100/50 relative overflow-hidden">
+      {/* Decorative soft glow */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent opacity-60"></div>
+      
+      <div className="max-w-4xl mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-2xl font-black text-gray-900 uppercase tracking-widest mb-3">Order Details</h2>
+          <div className="h-0.5 w-8 bg-orange-400 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Order Summary Column */}
-          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
-            <div className="bg-gray-50 rounded-3xl p-6 border border-gray-100 shadow-sm">
-              <h3 className="text-xs font-black text-gray-400 uppercase tracking-widest mb-6">Your Order Items</h3>
-              <div className="flex items-center space-x-4">
-                <div className="w-20 h-20 bg-white rounded-2xl overflow-hidden flex-shrink-0 border border-gray-200">
-                   <img src="http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png" alt="VibeSlim Pro" className="w-full h-full object-contain p-2" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Left Side: Order Summary */}
+          <div className="space-y-8 order-2 lg:order-1">
+            <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] px-1">Your Selection</h3>
+            
+            <div className="bg-white/80 backdrop-blur-md rounded-[2.5rem] p-8 space-y-8 border border-white shadow-xl shadow-orange-900/5">
+              <div className="flex items-center space-x-6">
+                <div className="w-24 h-24 bg-gray-50 rounded-2xl border border-gray-100 p-3 shrink-0 flex items-center justify-center">
+                  <img 
+                    src="http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp" 
+                    className="w-full h-full object-contain mix-blend-multiply" 
+                    alt="Product" 
+                  />
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-bold text-gray-900 text-sm leading-tight mb-1">{offer.name}</h4>
-                  <div className="flex items-center justify-between">
-                    <span className="font-black text-orange-600">{offer.price} AED</span>
-                    <span className="text-[10px] bg-orange-100 text-orange-700 px-2.5 py-1 rounded-full font-black">QTY: {offer.qty}</span>
+                <div className="space-y-1">
+                  <h4 className="font-extrabold text-gray-900 text-sm leading-snug uppercase tracking-tight">{offer.name}</h4>
+                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest">Quantity: {offer.qty}</p>
+                </div>
+              </div>
+
+              <div className="space-y-4 pt-8 border-t border-gray-100/50">
+                <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest">
+                  <span className="text-gray-400">Subtotal</span>
+                  <span className="text-gray-900">{offer.price} AED</span>
+                </div>
+                <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest">
+                  <span className="text-gray-400">Shipping (UAE)</span>
+                  <span className="text-green-500">Free</span>
+                </div>
+                <div className="flex justify-between items-center pt-6 border-t border-gray-100">
+                  <span className="text-sm font-black text-gray-900 uppercase tracking-[0.1em]">Grand Total</span>
+                  <div className="text-right">
+                    <span className="text-3xl font-black text-gray-900 tracking-tighter">{offer.price} <span className="text-xs ml-1">AED</span></span>
                   </div>
                 </div>
               </div>
-              
-              <div className="mt-8 pt-6 border-t border-dashed border-gray-200 space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500 font-medium">Subtotal</span>
-                  <span className="text-gray-900 font-bold">{offer.price} AED</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500 font-medium">Shipping</span>
-                  <span className="text-emerald-600 font-bold uppercase text-[10px]">Free</span>
-                </div>
-                <div className="flex justify-between items-center pt-2">
-                  <span className="font-black text-gray-900 uppercase text-xs tracking-widest">Total to Pay</span>
-                  <span className="font-black text-2xl text-gray-900">{offer.price} AED</span>
-                </div>
-              </div>
-            </div>
 
-            <div className="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 space-y-4">
-              <div className="flex items-center space-x-3 text-emerald-800">
-                <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                <span className="text-sm font-black uppercase tracking-tight">Cash on Delivery</span>
+              <div className="bg-[#fcfcfc] rounded-2xl p-4 flex items-center space-x-4 border border-gray-50">
+                <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                </div>
+                <div className="space-y-0.5">
+                  <p className="text-[10px] font-black text-gray-900 uppercase tracking-widest">Cash on Delivery</p>
+                  <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest leading-tight">Pay at your doorstep</p>
+                </div>
               </div>
-              <div className="flex items-center space-x-3 text-emerald-800">
-                <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                <span className="text-sm font-black uppercase tracking-tight">Open & Inspect Parcel</span>
-              </div>
-              <p className="text-[10px] text-emerald-700 font-medium leading-relaxed italic">Pay the driver only when your machine is delivered and you are happy with the package.</p>
             </div>
           </div>
 
-          {/* Form Column */}
-          <div className="lg:col-span-7">
-            <form onSubmit={handleSubmit} className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-2xl space-y-8">
-              <div className="space-y-6">
-                <h3 className="text-xl font-black text-gray-900 uppercase tracking-tight">Shipping Information</h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="md:col-span-2">
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Full Name</label>
-                    <input 
-                      required
-                      type="text"
-                      placeholder="e.g. Abdullah Ahmed"
-                      className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all font-semibold"
-                      value={formData.fullName}
-                      onChange={e => setFormData({...formData, fullName: e.target.value})}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Mobile Number</label>
-                    <input 
-                      required
-                      type="tel"
-                      placeholder="05x xxx xxxx"
-                      className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all font-semibold"
-                      value={formData.mobile}
-                      onChange={e => setFormData({...formData, mobile: e.target.value})}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">City</label>
-                    <input 
-                      required
-                      type="text"
-                      placeholder="e.g. Dubai"
-                      className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all font-semibold"
-                      value={formData.city}
-                      onChange={e => setFormData({...formData, city: e.target.value})}
-                    />
-                  </div>
-
-                  <div className="md:col-span-2">
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Shipping Address</label>
-                    <textarea 
-                      required
-                      rows={3}
-                      placeholder="Villa/Apartment No, Street, Landmark..."
-                      className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all font-semibold resize-none"
-                      value={formData.address}
-                      onChange={e => setFormData({...formData, address: e.target.value})}
-                    ></textarea>
-                  </div>
+          {/* Right Side: Shipping Form */}
+          <div className="space-y-8 order-1 lg:order-2">
+            <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] px-1">Delivery Information</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-4">
+                <div>
+                  <input 
+                    required
+                    type="text"
+                    placeholder="Full Name"
+                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
+                    value={formData.fullName}
+                    onChange={e => setFormData({...formData, fullName: e.target.value})}
+                  />
                 </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <input 
+                    required
+                    type="tel"
+                    placeholder="Mobile No"
+                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
+                    value={formData.mobile}
+                    onChange={e => setFormData({...formData, mobile: e.target.value})}
+                  />
+                  <input 
+                    required
+                    type="text"
+                    placeholder="City / Area"
+                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
+                    value={formData.city}
+                    onChange={e => setFormData({...formData, city: e.target.value})}
+                  />
+                </div>
+
+                <textarea 
+                  required
+                  rows={3}
+                  placeholder="Address (Villa/Building No, Street Name...)"
+                  className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] resize-none shadow-sm"
+                  value={formData.address}
+                  onChange={e => setFormData({...formData, address: e.target.value})}
+                ></textarea>
               </div>
 
-              <div className="p-6 bg-orange-50 border border-orange-100 rounded-3xl flex items-center space-x-5">
-                 <div className="text-3xl animate-bounce">🚚</div>
-                 <div>
-                   <p className="font-black text-orange-900 text-sm uppercase tracking-tight">Free Express Delivery</p>
-                   <p className="text-[10px] text-orange-700 font-bold uppercase tracking-wider">Estimated Arrival: 2-3 Business Days</p>
-                 </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4 bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                   <input 
+              <div className="flex items-start space-x-3 px-1">
+                <div className="flex items-center h-5">
+                  <input 
                     required
                     type="checkbox" 
-                    id="consent" 
-                    className="mt-1 w-6 h-6 rounded-lg border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
+                    id="consent-final" 
+                    className="w-5 h-5 rounded-md border-gray-200 text-orange-500 focus:ring-0 cursor-pointer"
                     checked={formData.confirmed}
                     onChange={e => setFormData({...formData, confirmed: e.target.checked})}
                   />
-                   <label htmlFor="consent" className="text-[11px] font-bold text-gray-500 leading-relaxed cursor-pointer select-none">
-                     I confirm that I want to receive this order via <span className="text-gray-900">Cash on Delivery</span>. I agree to be available at the provided mobile number for delivery.
-                   </label>
                 </div>
-
-                <button 
-                  type="submit"
-                  disabled={isPlacing}
-                  className="w-full py-6 gradient-cta text-white font-black rounded-2xl shadow-2xl shadow-orange-200 hover:scale-[1.02] active:scale-95 transition-all text-xl flex flex-col items-center justify-center disabled:opacity-70 disabled:grayscale uppercase tracking-tight"
-                >
-                  {isPlacing ? (
-                    <span className="flex items-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                      Placing Your Order...
-                    </span>
-                  ) : (
-                    <>
-                      <span>Complete My Order</span>
-                      <span className="text-xs opacity-90 mt-1 font-bold">Total to Pay: {offer.price} AED</span>
-                    </>
-                  )}
-                </button>
+                <label htmlFor="consent-final" className="text-[10px] text-gray-500 font-bold leading-relaxed select-none uppercase tracking-wide cursor-pointer">
+                  I verify my address is correct for <span className="text-gray-900">COD Shipping</span>.
+                </label>
               </div>
+
+              <button 
+                type="submit"
+                disabled={isPlacing}
+                className="w-full py-6 gradient-cta text-white font-black rounded-3xl shadow-xl shadow-orange-200 hover:scale-[1.01] active:scale-[0.98] transition-all text-sm uppercase tracking-[0.2em] flex items-center justify-center disabled:opacity-50"
+              >
+                {isPlacing ? (
+                  <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                ) : (
+                  <span>Place My Order</span>
+                )}
+              </button>
             </form>
           </div>
         </div>

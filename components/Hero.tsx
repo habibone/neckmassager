@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ProductOffer } from '../App';
 import CountdownTimer from './CountdownTimer';
@@ -11,6 +10,17 @@ interface MediaItem {
   type: 'image';
   src: string;
 }
+
+// Fix: Define the missing offers constant used in the checkout handler
+const offers: ProductOffer[] = [
+  {
+    id: 'single',
+    name: 'VibeSlim™ Pro Vibration Machine (SKU: WB-UA1734)',
+    price: 247,
+    qty: 1,
+    label: 'Standard Pack'
+  }
+];
 
 const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   const [viewers, setViewers] = useState(42);
@@ -29,25 +39,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
     "http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp",
     "http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp",
     "http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png",
-    "http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71izkp6Q2tL._AC_SL1500-1.webp",
     "http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png"
-  ];
-
-  const offers: ProductOffer[] = [
-    {
-      id: 'single',
-      name: 'VibeSlim™ Pro Vibration Machine (SKU: WB-UA1734)',
-      price: 247,
-      qty: 1,
-      label: 'Standard Pack'
-    },
-    {
-      id: 'family',
-      name: 'VibeSlim™ Pro (Family Bundle - 2 Units)',
-      price: 397,
-      qty: 2,
-      label: 'Buy 2 & Save Extra'
-    }
   ];
 
   useEffect(() => {
@@ -157,6 +149,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             <div className="space-y-4 pt-2">
                <CountdownTimer />
 
+               {/* Fix: Added the missing offers definition and used it here */}
                <button 
                 onClick={() => onCtaClick?.(offers[0])}
                 className="w-full py-6 gradient-cta text-white font-black text-xl rounded-2xl shadow-xl shadow-orange-200 transform hover:scale-[1.02] transition-all flex flex-col items-center justify-center uppercase tracking-tight"
