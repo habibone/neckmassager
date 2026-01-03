@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -33,7 +32,7 @@ export interface ProductOffer {
 
 const DEFAULT_OFFER: ProductOffer = {
   id: 'single',
-  name: 'VibeSlim™ Pro Vibration Machine (SKU: WB-UA1734)',
+  name: 'Weight Loss Vibration Machine (SKU: WB-UA1734)',
   price: 247,
   qty: 1,
   label: 'Standard Pack'
@@ -138,9 +137,9 @@ const App: React.FC = () => {
             <button onClick={() => setShowPolicy(true)} className="hover:text-orange-600 transition-colors">Privacy Policy</button>
             <button onClick={() => setShowPolicy(true)} className="hover:text-orange-600 transition-colors">Refund & Replacement</button>
             <a href="#" className="hover:text-orange-600 transition-colors">Shipping</a>
-            <a href="#" className="hover:text-orange-600 transition-colors">Contact</a>
+            <a href="https://wa.me/971507518901" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 transition-colors">Contact</a>
           </div>
-          <p className="text-gray-400">© {new Date().getFullYear()} VibeSlim Pro (SKU: WB-UA1734). All rights reserved.</p>
+          <p className="text-gray-400">© 2026 VibeSlim - A Wave Byte Partner Store (SKU: WB-UA1734). All rights reserved.</p>
         </div>
       </footer>
 

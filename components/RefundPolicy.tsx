@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface RefundPolicyProps {
@@ -64,7 +63,7 @@ const RefundPolicy: React.FC<RefundPolicyProps> = ({ onClose }) => {
               <p className="font-bold text-gray-800">2.1 Step 1: Initiation</p>
               <p>To initiate a replacement request, you are required to:</p>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Send a clear video evidencing the issue (i.e., incorrect, damaged, or faulty product) via WhatsApp to our customer support team within the designated time frame.</li>
+                <li>Send a clear video evidencing the issue (i.e., incorrect, damaged, or faulty product) via WhatsApp to our customer support team at +971 50 751 8901 within the designated time frame.</li>
               </ul>
               <p className="bg-gray-50 p-4 rounded-xl italic border-l-4 border-orange-500 text-[12px]">
                 Note: In many cases, issues arise due to improper product usage. Our support team may offer troubleshooting guidance before confirming eligibility for replacement.
@@ -102,7 +101,7 @@ const RefundPolicy: React.FC<RefundPolicyProps> = ({ onClose }) => {
             </div>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-3 pt-4 border-t border-gray-100">
             <h3 className="text-gray-900 font-black uppercase text-sm tracking-widest flex items-center">
               <span className="w-6 h-6 bg-red-100 text-red-600 rounded-md flex items-center justify-center text-[10px] mr-3 font-black">5</span>
               Refund Policy
@@ -117,7 +116,7 @@ const RefundPolicy: React.FC<RefundPolicyProps> = ({ onClose }) => {
             <div className="pl-0 space-y-2">
               <p>If you have any questions regarding this policy or need assistance with a replacement request, please contact us:</p>
               <div className="bg-orange-50 p-6 rounded-2xl space-y-2 border border-orange-100">
-                <p className="font-bold text-gray-900">WhatsApp: <a href="tel:+16072351747" className="text-orange-600">+1 607 235 1747</a></p>
+                <p className="font-bold text-gray-900">WhatsApp: <a href="https://wa.me/971507518901" className="text-orange-600">+971 50 751 8901</a></p>
                 <p className="font-bold text-gray-900">Warehouse Address: <br/><span className="font-medium text-gray-600">Warehouse No. 13, Street No. 4 – 4th Street, Al Khabaisi, Dubai, UAE</span></p>
               </div>
               <p className="text-xs font-bold text-gray-400 italic">Kindly retain your order number and store name for quicker assistance.</p>

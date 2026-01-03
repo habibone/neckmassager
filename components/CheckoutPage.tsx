@@ -176,6 +176,17 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
                   />
                 </div>
 
+                <div>
+                  <input 
+                    required
+                    type="email"
+                    placeholder="Email Address"
+                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
+                    value={formData.email}
+                    onChange={e => setFormData({...formData, email: e.target.value})}
+                  />
+                </div>
+
                 <textarea 
                   required
                   rows={3}

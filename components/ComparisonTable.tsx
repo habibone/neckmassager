@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { COMPARISON_DATA } from '../constants';
 
@@ -16,7 +15,7 @@ const ComparisonTable: React.FC = () => {
         <div className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-gray-100">
           <div className="grid grid-cols-2 text-center">
             <div className="p-6 bg-orange-500 text-white">
-              <p className="text-sm md:text-lg font-black uppercase tracking-widest">VibeSlim™ Pro</p>
+              <p className="text-sm md:text-lg font-black uppercase tracking-widest">Weight Loss Vibration Machine</p>
             </div>
             <div className="p-6 bg-gray-100 text-gray-500 border-l border-white/20">
               <p className="text-sm md:text-lg font-black uppercase tracking-widest">Generic Brands</p>

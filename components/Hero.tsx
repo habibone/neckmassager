@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ProductOffer } from '../App';
 import CountdownTimer from './CountdownTimer';
@@ -7,15 +8,15 @@ interface HeroProps {
 }
 
 interface MediaItem {
-  type: 'image';
+  type: 'image' | 'video';
   src: string;
+  thumb?: string;
 }
 
-// Fix: Define the missing offers constant used in the checkout handler
 const offers: ProductOffer[] = [
   {
     id: 'single',
-    name: 'VibeSlim™ Pro Vibration Machine (SKU: WB-UA1734)',
+    name: 'Weight Loss Vibration Machine (SKU: WB-UA1734)',
     price: 247,
     qty: 1,
     label: 'Standard Pack'
@@ -27,20 +28,31 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   const [stockProgress, setStockProgress] = useState(85);
   const [detectedCity, setDetectedCity] = useState<string | null>(null);
   
-  // New requested main image
-  const mainImage = "http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp";
-
-  const [activeMedia, setActiveMedia] = useState<MediaItem>({
-    type: 'image',
-    src: mainImage
-  });
-
-  const secondaryImages = [
-    "http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp",
-    "http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp",
-    "http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png",
-    "http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png"
+  const productMedia: MediaItem[] = [
+    {
+      type: 'image',
+      src: "http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp"
+    },
+    {
+      type: 'video',
+      src: 'http://images.supplipure.com/wp-content/uploads/2026/01/vibration-machine3.mp4',
+      thumb: 'http://images.supplipure.com/wp-content/uploads/2026/01/vibration-machine-4.jpeg'
+    },
+    {
+      type: 'image',
+      src: "http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp"
+    },
+    {
+      type: 'image',
+      src: "http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png"
+    },
+    {
+      type: 'image',
+      src: "http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png"
+    }
   ];
+
+  const [activeMedia, setActiveMedia] = useState<MediaItem>(productMedia[0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,25 +75,47 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
         <div className="flex flex-col lg:flex-row gap-10">
           <div className="flex-1 space-y-4">
             <div className="aspect-square rounded-2xl overflow-hidden bg-white border border-gray-100 group relative flex items-center justify-center">
-              <img 
-                key={activeMedia.src}
-                src={activeMedia.src} 
-                className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700"
-                alt="Product view"
-              />
+              {activeMedia.type === 'video' ? (
+                <video
+                  key={activeMedia.src}
+                  src={activeMedia.src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  poster={activeMedia.thumb}
+                  onCanPlay={(e) => e.currentTarget.play()}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img 
+                  key={activeMedia.src}
+                  src={activeMedia.src} 
+                  className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                  alt="Weight Loss Vibration Machine"
+                />
+              )}
               <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider pointer-events-none">
-                HD Photo
+                {activeMedia.type === 'video' ? 'Product Video' : 'Official Photo'}
               </div>
             </div>
 
             <div className="grid grid-cols-5 gap-2">
-              {secondaryImages.map((src, idx) => (
+              {productMedia.map((media, idx) => (
                 <div 
                   key={idx} 
-                  onClick={() => setActiveMedia({ type: 'image', src })}
-                  className={`aspect-square rounded-lg bg-gray-50 border-2 cursor-pointer overflow-hidden transition-all flex items-center justify-center ${activeMedia.src === src ? 'border-orange-500' : 'border-transparent hover:border-orange-200'}`}
+                  onClick={() => setActiveMedia(media)}
+                  className={`aspect-square rounded-lg bg-gray-50 border-2 cursor-pointer overflow-hidden transition-all flex items-center justify-center relative ${activeMedia.src === media.src ? 'border-orange-500' : 'border-transparent hover:border-orange-200'}`}
                 >
-                   <img src={src} className="w-full h-full object-contain p-1" alt={`Product detail ${idx + 1}`} />
+                   <img src={media.thumb || media.src} className="w-full h-full object-contain p-1" alt={`Product detail ${idx + 1}`} />
+                   {media.type === 'video' && (
+                     <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                       <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                         <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.33-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                       </svg>
+                     </div>
+                   )}
                 </div>
               ))}
             </div>
@@ -149,7 +183,6 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             <div className="space-y-4 pt-2">
                <CountdownTimer />
 
-               {/* Fix: Added the missing offers definition and used it here */}
                <button 
                 onClick={() => onCtaClick?.(offers[0])}
                 className="w-full py-6 gradient-cta text-white font-black text-xl rounded-2xl shadow-xl shadow-orange-200 transform hover:scale-[1.02] transition-all flex flex-col items-center justify-center uppercase tracking-tight"

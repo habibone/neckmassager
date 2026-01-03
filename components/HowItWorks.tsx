@@ -17,7 +17,7 @@ const HowItWorks: React.FC = () => {
               Start Your Workout in <br/>
               <span className="text-orange-600">3 Easy Steps</span>
             </h2>
-            <p className="mt-4 text-gray-500 font-medium">Getting started with VibeSlim™ Pro is as simple as pressing a button. No complicated setups, just pure results.</p>
+            <p className="mt-4 text-gray-500 font-medium">Getting started with your Weight Loss Vibration Machine is as simple as pressing a button. No complicated setups, just pure results.</p>
           </div>
 
           <div className="space-y-10">

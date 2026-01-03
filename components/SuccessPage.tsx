@@ -19,9 +19,9 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
     window.scrollTo(0, 0);
   }, []);
 
-  const businessPhone = "16072351747";
+  const businessPhone = "971507518901";
   const whatsappMsg = encodeURIComponent(
-    `YES, I confirm my COD order for the VibeSlim™ Pro (Ref: ${refCode}).`
+    `YES, I confirm my COD order for the Weight Loss Vibration Machine (Ref: ${refCode}).`
   );
 
   const whatsappUrl = `https://wa.me/${businessPhone}?text=${whatsappMsg}`;

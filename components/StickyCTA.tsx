@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 interface StickyCTAProps {
@@ -7,8 +6,8 @@ interface StickyCTAProps {
 
 const StickyCTA: React.FC<StickyCTAProps> = ({ onCtaClick }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const phoneNumber = "16072351747";
-  const whatsappMsg = encodeURIComponent("Hi! I want to order the VibeSlim™ Pro Vibration Machine (SKU: WB-UA1734). Please confirm Cash on Delivery for my area.");
+  const phoneNumber = "971507518901";
+  const whatsappMsg = encodeURIComponent("Hi! I want to order the Weight Loss Vibration Machine (SKU: WB-UA1734). Please confirm Cash on Delivery for my area.");
 
   useEffect(() => {
     const handleScroll = () => {

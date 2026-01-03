@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const SafetySection: React.FC = () => {
@@ -35,7 +34,7 @@ const SafetySection: React.FC = () => {
             
             <div className="mt-8 p-4 bg-white border border-gray-100 rounded-2xl shadow-sm">
               <p className="text-xs font-bold text-gray-500 text-center leading-relaxed">
-                VibeSlim Pro is designed for home relaxation and movement support. It is easy for beginners and safe for daily use.
+                The Weight Loss Vibration Machine is designed for home relaxation and movement support. It is easy for beginners and safe for daily use.
               </p>
             </div>
           </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const FeaturesGrid: React.FC = () => {
@@ -40,7 +39,7 @@ const FeaturesGrid: React.FC = () => {
             <span className="text-gradient">Maximum Results At Home</span>
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto font-medium text-lg">
-            We've packed the VibeSlim™ Pro with professional features to ensure your fitness journey is simple, effective, and fun.
+            VibeSlim has engineered this Weight Loss Vibration Machine with professional features to ensure your fitness journey is simple, effective, and fun.
           </p>
         </div>
 
@@ -51,12 +50,12 @@ const FeaturesGrid: React.FC = () => {
             <div className="relative z-10 rounded-[3rem] overflow-hidden border border-orange-100 shadow-2xl bg-white">
               <img 
                 src="http://images.supplipure.com/wp-content/uploads/2026/01/Maximum-Results-At-Home.png" 
-                alt="VibeSlim Pro Professional Features" 
+                alt="Weight Loss Vibration Machine Professional Features" 
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-lg border border-orange-100 flex items-center space-x-2">
                 <span className="text-orange-500 font-black">2026</span>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Premium Edition</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Official Edition</span>
               </div>
             </div>
           </div>

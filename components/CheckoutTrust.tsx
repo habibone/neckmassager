@@ -1,9 +1,8 @@
-
 import React from 'react';
 
 const CheckoutTrust: React.FC = () => {
-  const phoneNumber = "16072351747";
-  const whatsappMsg = encodeURIComponent("Hi! I have a question about the VibeSlim™ Pro. Can you help me?");
+  const phoneNumber = "971507518901";
+  const whatsappMsg = encodeURIComponent("Hi! I have a question about the Weight Loss Vibration Machine. Can you help me?");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMsg}`;
 
   return (
@@ -11,11 +10,10 @@ const CheckoutTrust: React.FC = () => {
       <div className="max-w-4xl mx-auto text-center space-y-12">
         <h3 className="text-2xl font-bold text-gray-800">Secure Checkout & Fast Shipping</h3>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {[
             { title: 'Secure SSL', subtitle: 'Encrypted Payments', icon: '🔒' },
             { title: 'Fast Delivery', subtitle: '2-3 Business Days', icon: '🚚' },
-            { title: '7-Day Returns', subtitle: 'Easy & No-Hassle', icon: '♻️' },
             { title: 'Expert Support', subtitle: 'WhatsApp Assistance', icon: '💬' }
           ].map(item => (
             <div key={item.title} className="space-y-2">

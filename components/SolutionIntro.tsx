@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const SolutionIntro: React.FC = () => {
@@ -8,7 +7,7 @@ const SolutionIntro: React.FC = () => {
         <div className="flex-1 order-2 md:order-1 relative">
            <img 
             src="http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png" 
-            alt="VibeSlim Solution" 
+            alt="Weight Loss Vibration Machine" 
             className="rounded-[2.5rem] shadow-2xl relative z-10 w-full object-contain bg-gray-50 p-8"
           />
           <div className="absolute -bottom-10 -left-10 w-40 h-40 gradient-cta rounded-full blur-3xl opacity-20"></div>
@@ -24,7 +23,7 @@ const SolutionIntro: React.FC = () => {
           
           <div className="space-y-8 text-lg text-gray-600 leading-relaxed font-medium">
             <p>
-              VibeSlim Pro uses rhythmic vibrations to help move your body while you relax. It is designed to be home-friendly and perfect for beginners who want light daily movement without the stress of a gym.
+              This Weight Loss Vibration Machine uses rhythmic vibrations to help move your body while you relax. It is designed to be home-friendly and perfect for beginners who want light daily movement without the stress of a gym.
             </p>
             
             <div className="grid gap-6">

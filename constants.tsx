@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Feature, Review, FaqItem } from './types';
 
@@ -43,7 +42,7 @@ export const FEATURES: Feature[] = [
   {
     title: 'Bluetooth & USB Music',
     description: 'Connect your phone easily. Enjoy your favorite songs through the built-in speakers while you move.',
-    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71izkp6Q2tL._AC_SL1500-1.webp" className="w-full h-full object-cover rounded-full" alt="Music" />
+    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp" className="w-full h-full object-cover rounded-full" alt="Music" />
   },
   {
     title: 'Silent 400W Motor',
@@ -88,6 +87,6 @@ export const FAQ: FaqItem[] = [
   },
   {
     question: "What comes in the box?",
-    answer: "You get the VibeSlim Pro Machine, a Smart Band (App supported), 2 Resistance Bands for arm movement, and the power cable."
+    answer: "You get the Weight Loss Vibration Machine, a Smart Band (App supported), 2 Resistance Bands for arm movement, and the power cable."
   }
 ];

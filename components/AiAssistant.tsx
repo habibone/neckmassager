@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from "@google/genai";
 import { trackEvent } from '../utils/analytics';
@@ -14,7 +13,7 @@ interface AiAssistantProps {
 
 const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', text: "Hi! I'm your VibeSlim Pro assistant. Ready to start your weight loss journey? Ask me about the 180 speed levels or the Bluetooth features!" }
+    { role: 'assistant', text: "Hi! I'm your VibeSlim assistant. Ready to start your wellness journey? Ask me about the 180 speed levels of our Weight Loss Vibration Machine!" }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -42,7 +41,7 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
           { role: 'user', parts: [{ text: userMessage }] }
         ],
         config: {
-          systemInstruction: "You are a helpful eCommerce sales assistant for VibeSlim Pro, a weight loss vibration machine. SKU: WB-UA1734. Features: 180 speed levels, 3 channels (Walking, Jogging, Running), 400W silent motor, Bluetooth & USB music, Magnet physiotherapy for feet, Resistance bands included. Price: 247 AED. Goal: 10 mins/day, 3x/week for results. Be professional and encouraging. Keep answers short.",
+          systemInstruction: "You are a helpful eCommerce sales assistant for VibeSlim, an online brand selling the Weight Loss Vibration Machine. SKU: WB-UA1734. Features: 180 speed levels, 3 channels (Walking, Jogging, Running), 400W silent motor, Bluetooth & USB music, Magnet physiotherapy for feet, Resistance bands included. Price: 247 AED. Goal: 10 mins/day, 3x/week for results. Be professional and encouraging. VibeSlim is the store name; the product is the Weight Loss Vibration Machine. Keep answers short.",
         }
       });
 
@@ -50,7 +49,7 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
       setMessages(prev => [...prev, { role: 'assistant', text: aiText }]);
     } catch (error) {
       console.error("AI Error:", error);
-      setMessages(prev => [...prev, { role: 'assistant', text: "I'm having a little trouble connecting. But the 247 AED flash offer is still active!" }]);
+      setMessages(prev => [...prev, { role: 'assistant', text: "I'm having a little trouble connecting. But the 247 AED flash offer for our vibration machine is still active!" }]);
     } finally {
       setIsTyping(false);
     }
