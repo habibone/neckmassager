@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+// Fix: Removed manual declaration of 'process' to resolve "Cannot redeclare block-scoped variable" error 
+// and comply with guidelines stating that process.env should not be defined manually.
 export interface Review {
   id: string;
   name: string;
@@ -13,7 +15,7 @@ export interface Review {
 export interface Feature {
   title: string;
   description: string;
-  // Replaced JSX.Element with React.ReactNode to resolve the JSX namespace error
+  // Using React.ReactNode is safer than JSX.Element for cross-version compatibility
   icon: React.ReactNode;
 }
 
