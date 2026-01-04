@@ -2,7 +2,7 @@
 import React from 'react';
 
 const UsageVideoSection: React.FC = () => {
-  const videoSrc = "http://images.supplipure.com/wp-content/uploads/2026/01/vibration-machine2.mp4";
+  const videoSrc = "https://images.supplipure.com/wp-content/uploads/2026/01/vibration-machine2.mp4";
 
   return (
     <section className="py-24 px-6 bg-white overflow-hidden">
@@ -29,7 +29,7 @@ const UsageVideoSection: React.FC = () => {
               preload="metadata"
               onCanPlay={(e) => e.currentTarget.play()}
               className="w-full aspect-[16/9] md:aspect-video object-cover"
-              poster="http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png"
+              poster="https://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png"
             >
               <source src={videoSrc} type="video/mp4" />
               Your browser does not support the video tag.

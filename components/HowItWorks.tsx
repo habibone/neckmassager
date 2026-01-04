@@ -39,7 +39,7 @@ const HowItWorks: React.FC = () => {
           <div className="absolute -inset-4 bg-orange-100/30 rounded-[3rem] blur-2xl z-0"></div>
           <div className="relative z-10 rounded-[3rem] shadow-2xl overflow-hidden border border-orange-100 bg-white p-0">
             <img 
-              src="http://images.supplipure.com/wp-content/uploads/2026/01/vibration-plate-for-home.png" 
+              src="https://images.supplipure.com/wp-content/uploads/2026/01/vibration-plate-for-home.png" 
               className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" 
               alt="Start your workout session" 
             />

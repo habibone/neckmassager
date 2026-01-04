@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Feature, Review, FaqItem } from './types';
 
@@ -32,22 +33,22 @@ export const FEATURES: Feature[] = [
   {
     title: '180 Speed Levels',
     description: 'Find your perfect pace with 180 levels. Can support daily movement goals for everyone.',
-    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png" className="w-full h-full object-contain" alt="180 Speeds" />
+    icon: <img src="https://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png" className="w-full h-full object-contain" alt="180 Speeds" />
   },
   {
     title: '3 Training Modes',
     description: 'Choose between Walking, Jogging, or Running modes to match your comfort level.',
-    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png" className="w-full h-full object-contain" alt="3 Modes" />
+    icon: <img src="https://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png" className="w-full h-full object-contain" alt="3 Modes" />
   },
   {
     title: 'Bluetooth & USB Music',
     description: 'Connect your phone easily. Enjoy your favorite songs through the built-in speakers while you move.',
-    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp" className="w-full h-full object-cover rounded-full" alt="Music" />
+    icon: <img src="https://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp" className="w-full h-full object-cover rounded-full" alt="Music" />
   },
   {
     title: 'Silent 400W Motor',
     description: 'Powerful yet quiet. Use it anytime at home without disturbing your family or neighbors.',
-    icon: <img src="http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png" className="w-full h-full object-contain" alt="Silent Motor" />
+    icon: <img src="https://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png" className="w-full h-full object-contain" alt="Silent Motor" />
   }
 ];
 

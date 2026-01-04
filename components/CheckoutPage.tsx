@@ -100,7 +100,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
               <div className="flex items-center space-x-6">
                 <div className="w-24 h-24 bg-gray-50 rounded-2xl border border-gray-100 p-3 shrink-0 flex items-center justify-center">
                   <img 
-                    src="http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp" 
+                    src="https://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp" 
                     className="w-full h-full object-contain mix-blend-multiply" 
                     alt="Product" 
                   />

@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const SolutionIntro: React.FC = () => {
@@ -6,7 +7,7 @@ const SolutionIntro: React.FC = () => {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
         <div className="flex-1 order-2 md:order-1 relative">
            <img 
-            src="http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png" 
+            src="https://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png" 
             alt="Weight Loss Vibration Machine" 
             className="rounded-[2.5rem] shadow-2xl relative z-10 w-full object-contain bg-gray-50 p-8"
           />

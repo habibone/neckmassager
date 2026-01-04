@@ -31,24 +31,24 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   const productMedia: MediaItem[] = [
     {
       type: 'image',
-      src: "http://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp"
+      src: "https://images.supplipure.com/wp-content/uploads/2026/01/viberation-palate-new.webp"
     },
     {
       type: 'video',
-      src: 'http://images.supplipure.com/wp-content/uploads/2026/01/vibration-machine3.mp4',
-      thumb: 'http://images.supplipure.com/wp-content/uploads/2026/01/vibration-machine-4.jpeg'
+      src: 'https://images.supplipure.com/wp-content/uploads/2026/01/vibration-machine3.mp4',
+      thumb: 'https://images.supplipure.com/wp-content/uploads/2026/01/vibration-machine-4.jpeg'
     },
     {
       type: 'image',
-      src: "http://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp"
+      src: "https://images.supplipure.com/wp-content/uploads/2026/01/1761120202_71KVay5qpTL._AC_SL1500.webp"
     },
     {
       type: 'image',
-      src: "http://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png"
+      src: "https://images.supplipure.com/wp-content/uploads/2026/01/Whisk_39d8f2bf76d6e7fad0b4599c9d691e20dr.png"
     },
     {
       type: 'image',
-      src: "http://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png"
+      src: "https://images.supplipure.com/wp-content/uploads/2026/01/Untitled-design.png"
     }
   ];
 

@@ -39,7 +39,7 @@ const PainAgitation: React.FC = () => {
           <div className="relative group overflow-hidden rounded-[3rem]">
             <div className="absolute -inset-1 bg-orange-500/10 rounded-[3rem] blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
             <img 
-              src="http://images.supplipure.com/wp-content/uploads/2026/01/whothevibrationplatefor.png" 
+              src="https://images.supplipure.com/wp-content/uploads/2026/01/whothevibrationplatefor.png" 
               alt="VibeSlim Machine Lifestyle" 
               className="rounded-[3rem] shadow-2xl relative border border-orange-100 w-full object-cover aspect-square bg-white p-0"
             />

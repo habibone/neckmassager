@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const FeaturesGrid: React.FC = () => {
@@ -49,7 +50,7 @@ const FeaturesGrid: React.FC = () => {
             <div className="absolute -inset-4 bg-orange-100/50 rounded-[3rem] blur-2xl z-0"></div>
             <div className="relative z-10 rounded-[3rem] overflow-hidden border border-orange-100 shadow-2xl bg-white">
               <img 
-                src="http://images.supplipure.com/wp-content/uploads/2026/01/Maximum-Results-At-Home.png" 
+                src="https://images.supplipure.com/wp-content/uploads/2026/01/Maximum-Results-At-Home.png" 
                 alt="Weight Loss Vibration Machine Professional Features" 
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
               />

@@ -36,7 +36,7 @@ const WhoForSection: React.FC = () => {
            <div className="absolute inset-0 bg-orange-100 rounded-full blur-3xl opacity-30 transform scale-150"></div>
            <div className="rounded-[3rem] shadow-2xl relative z-10 w-full overflow-hidden bg-white aspect-square flex items-center justify-center p-0 border border-gray-100">
              <img 
-                src="http://images.supplipure.com/wp-content/uploads/2026/01/Weight-Loss-Vibration-plate-plateform.png" 
+                src="https://images.supplipure.com/wp-content/uploads/2026/01/Weight-Loss-Vibration-plate-plateform.png" 
                 alt="Who is it for"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
               />
