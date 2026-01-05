@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { trackEvent } from '../utils/analytics';
 
@@ -19,7 +18,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
     window.scrollTo(0, 0);
   }, []);
 
-  const businessPhone = "971507518901";
+  const businessPhone = "923703730897";
   const whatsappMsg = encodeURIComponent(
     `YES, I confirm my COD order for the Weight Loss Vibration Machine (Ref: ${refCode}).`
   );

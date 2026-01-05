@@ -44,49 +44,4 @@ export const trackEvent = (eventName: EventName, properties?: EventProperties) =
   if (typeof (window as any).dataLayer !== 'undefined') {
     (window as any).dataLayer.push(payload);
   }
-
-  // Meta Pixel Tracking
-  if (typeof (window as any).fbq !== 'undefined') {
-    const fbq = (window as any).fbq;
-    
-    switch (eventName) {
-      case 'funnel_view':
-        fbq('track', 'ViewContent', {
-          content_name: 'VibeSlim Landing Page',
-          content_category: 'Fitness Equipment'
-        });
-        break;
-      case 'cta_click':
-        fbq('track', 'AddToCart', {
-          content_name: 'Weight Loss Vibration Machine',
-          value: 247,
-          currency: 'AED'
-        });
-        break;
-      case 'initiate_checkout':
-        fbq('track', 'InitiateCheckout');
-        break;
-      case 'order_placed':
-        fbq('track', 'Purchase', {
-          value: properties?.offer_price || 247,
-          currency: 'AED',
-          content_name: 'Weight Loss Vibration Machine',
-          content_type: 'product'
-        });
-        break;
-      case 'order_confirmed_whatsapp':
-        fbq('track', 'Lead', {
-          content_name: 'WhatsApp Confirmation',
-          status: 'verified'
-        });
-        break;
-      case 'ai_assistant_message':
-        fbq('track', 'Contact');
-        break;
-      default:
-        // Other events can be tracked as custom events if needed
-        fbq('trackCustom', eventName, properties);
-        break;
-    }
-  }
 };
