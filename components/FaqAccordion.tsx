@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { FAQ } from '../constants';
 
@@ -21,14 +20,14 @@ const FaqAccordion: React.FC = () => {
               >
                 <span className="font-bold text-[#111827] md:text-lg">{item.question}</span>
                 <svg 
-                  className={`w-5 h-5 text-orange-500 transition-transform duration-300 ${openIndex === idx ? 'rotate-180' : ''}`} 
+                  className={`w-5 h-5 text-[#6149dd] transition-transform duration-300 ${openIndex === idx ? 'rotate-180' : ''}`} 
                   fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               <div className={`transition-all duration-300 ease-in-out ${openIndex === idx ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-                <div className="px-8 pb-8 text-gray-500 leading-relaxed">
+                <div className="px-8 pb-8 text-[#848693] leading-relaxed">
                   {item.answer}
                 </div>
               </div>

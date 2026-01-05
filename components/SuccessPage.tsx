@@ -37,17 +37,17 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
         
         {/* TOP STATUS HEADER */}
         <div className="text-center space-y-3">
-          <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-2 border-4 border-white shadow-lg">
-            <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-2 border-4 border-white shadow-lg">
+            <svg className="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
             </svg>
           </div>
           <h1 className="text-2xl font-black text-gray-900 tracking-tighter uppercase leading-tight">
             Order Received! <br/>
-            <span className="text-red-600">Please Confirm to Avoid Cancellation</span>
+            <span className="text-[#6149dd]">Please Confirm to Avoid Cancellation</span>
           </h1>
-          <div className="inline-block bg-orange-100 px-4 py-1.5 rounded-full border border-orange-200">
-            <p className="text-orange-800 font-black text-[10px] uppercase tracking-widest leading-none">
+          <div className="inline-block bg-[#6149dd]/10 px-4 py-1.5 rounded-full border border-[#6149dd]/20">
+            <p className="text-[#6149dd] font-black text-[10px] uppercase tracking-widest leading-none">
               ⚠️ {isConfirmed ? 'Status: Verification Sent' : 'Status: Awaiting Verification'}
             </p>
           </div>
@@ -55,8 +55,8 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
 
         {/* VERIFICATION ACTION HUB */}
         <div className="bg-white rounded-[2rem] p-6 shadow-2xl shadow-gray-200 border border-gray-100 space-y-6">
-          <p className="text-center text-sm font-bold text-gray-500 px-2 leading-relaxed">
-            Your COD order is placed. Only <span className="text-green-600">CONFIRMED</span> orders move to shipping. Please confirm via WhatsApp to proceed:
+          <p className="text-center text-sm font-bold text-[#848693] px-2 leading-relaxed">
+            Your COD order is placed. Only <span className="text-[#6149dd]">CONFIRMED</span> orders move to shipping. Please confirm via WhatsApp to proceed:
           </p>
           
           <div className="space-y-3">
@@ -78,19 +78,19 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
         <div className="space-y-3">
           <div className="bg-white rounded-[2rem] p-6 border border-gray-100 shadow-sm space-y-3">
              <div className="flex justify-between items-center text-xs">
-               <span className="text-gray-500 font-bold uppercase tracking-wider">Reference:</span>
+               <span className="text-[#848693] font-bold uppercase tracking-wider">Reference:</span>
                <span className="font-black text-gray-900 bg-gray-50 px-2 py-1 rounded-lg border border-gray-200">{refCode}</span>
              </div>
              <div className="flex justify-between items-center text-xs">
-               <span className="text-gray-500 font-bold uppercase tracking-wider">Amount to Pay:</span>
+               <span className="text-[#848693] font-bold uppercase tracking-wider">Amount to Pay:</span>
                <div className="text-right">
-                  <span className="text-lg font-black text-orange-600">
+                  <span className="text-lg font-black text-[#6149dd]">
                     {finalTotal} AED (COD)
                   </span>
                </div>
              </div>
              <div className="pt-3 border-t border-gray-100 flex flex-col text-xs space-y-1">
-               <p className="text-gray-400 font-bold">SHIPPING TO:</p>
+               <p className="text-[#848693] font-bold">SHIPPING TO:</p>
                <p className="text-gray-800 font-black">{orderDetails.fullName}, {orderDetails.address}, {orderDetails.city}</p>
              </div>
           </div>
@@ -100,7 +100,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
         <div className="px-6 py-2">
           <div className="flex justify-between relative">
              <div className="absolute top-4 left-0 w-full h-0.5 bg-gray-200 z-0"></div>
-             <div className={`absolute top-4 left-0 h-0.5 bg-green-500 z-0 transition-all duration-1000 ease-out`} style={{width: (isConfirmed) ? '50%' : '5%'}}></div>
+             <div className={`absolute top-4 left-0 h-0.5 bg-[#6149dd] z-0 transition-all duration-1000 ease-out`} style={{width: (isConfirmed) ? '50%' : '5%'}}></div>
             
             {[
               { label: 'Placed', active: true },
@@ -108,14 +108,14 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
               { label: 'Shipped', active: false }
             ].map((step, idx) => (
               <div key={step.label} className="flex flex-col items-center z-10">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center border-4 border-white shadow-md transition-colors duration-500 ${step.active ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-400'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center border-4 border-white shadow-md transition-colors duration-500 ${step.active ? 'bg-[#6149dd] text-white' : 'bg-gray-200 text-[#848693]'}`}>
                   {step.active ? (
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                   ) : (
                     <span className="text-[10px] font-bold">{idx + 1}</span>
                   )}
                 </div>
-                <span className={`text-[9px] font-black uppercase mt-2 tracking-widest ${step.active ? 'text-green-600' : 'text-gray-400'}`}>{step.label}</span>
+                <span className={`text-[9px] font-black uppercase mt-2 tracking-widest ${step.active ? 'text-[#6149dd]' : 'text-[#848693]'}`}>{step.label}</span>
               </div>
             ))}
           </div>
@@ -123,7 +123,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ orderDetails, onBackHome }) =
 
         <button 
           onClick={onBackHome}
-          className="w-full py-4 text-gray-400 font-bold hover:text-gray-900 transition-colors uppercase text-[10px] tracking-[0.3em] bg-transparent"
+          className="w-full py-4 text-[#848693] font-bold hover:text-gray-900 transition-colors uppercase text-[10px] tracking-[0.3em] bg-transparent"
         >
           Return to Store
         </button>

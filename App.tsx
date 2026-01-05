@@ -122,7 +122,7 @@ const App: React.FC = () => {
         <CheckoutTrust />
       </main>
 
-      <footer className="bg-white border-t border-gray-100 text-gray-500 py-16 px-6 text-center text-sm">
+      <footer className="bg-white border-t border-gray-100 text-[#848693] py-16 px-6 text-center text-sm">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center space-x-2 mb-8">
             <div className="w-8 h-8 gradient-cta rounded-lg flex items-center justify-center">
@@ -130,14 +130,14 @@ const App: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <span className="text-2xl font-black tracking-tighter text-[#111827]">VIBE<span className="text-orange-500">SLIM</span></span>
+            <span className="text-2xl font-black tracking-tighter text-[#111827]">VIBE<span className="text-[#6149dd]">SLIM</span></span>
           </div>
-          <p className="mb-6 max-w-lg mx-auto leading-relaxed text-gray-600 font-medium">Dedicated to bringing professional-grade fitness and therapy to your home. Wellness and health shouldn't be a struggle.</p>
+          <p className="mb-6 max-w-lg mx-auto leading-relaxed text-[#848693] font-medium">Dedicated to bringing professional-grade fitness and therapy to your home. Wellness and health shouldn't be a struggle.</p>
           <div className="flex flex-wrap justify-center gap-6 mb-12 text-xs font-bold uppercase tracking-widest">
-            <button onClick={() => setShowPolicy(true)} className="hover:text-orange-600 transition-colors">Privacy Policy</button>
-            <button onClick={() => setShowPolicy(true)} className="hover:text-orange-600 transition-colors">Refund & Replacement</button>
-            <a href="#" className="hover:text-orange-600 transition-colors">Shipping</a>
-            <a href="https://wa.me/971507518901" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 transition-colors">Contact</a>
+            <button onClick={() => setShowPolicy(true)} className="hover:text-[#6149dd] transition-colors">Privacy Policy</button>
+            <button onClick={() => setShowPolicy(true)} className="hover:text-[#6149dd] transition-colors">Refund & Replacement</button>
+            <a href="#" className="hover:text-[#6149dd] transition-colors">Shipping</a>
+            <a href="https://wa.me/971507518901" target="_blank" rel="noopener noreferrer" className="hover:text-[#6149dd] transition-colors">Contact</a>
           </div>
           <p className="text-gray-400">© 2026 VibeSlim - A Wave Byte Partner Store (SKU: WB-UA1734). All rights reserved.</p>
         </div>

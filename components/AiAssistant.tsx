@@ -77,7 +77,7 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
           <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[85%] p-3 rounded-2xl text-sm ${
               msg.role === 'user' 
-                ? 'bg-orange-500 text-white rounded-tr-none' 
+                ? 'bg-[#6149dd] text-white rounded-tr-none' 
                 : 'bg-white text-gray-800 shadow-sm border border-gray-100 rounded-tl-none'
             }`}>
               {msg.text}
@@ -105,7 +105,7 @@ const AiAssistant: React.FC<AiAssistantProps> = ({ onClose }) => {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Ask about speeds, setup, music..."
-            className="w-full pl-4 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20"
+            className="w-full pl-4 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#6149dd]/20"
           />
           <button 
             onClick={handleSend}

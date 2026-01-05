@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const UsageVideoSection: React.FC = () => {
@@ -9,15 +8,15 @@ const UsageVideoSection: React.FC = () => {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12 space-y-4">
           <h2 className="text-3xl md:text-5xl font-black text-[#111827] uppercase tracking-tighter">
-            Product <span className="text-orange-600">Unboxing</span>
+            Product <span className="text-[#6149dd]">Unboxing</span>
           </h2>
-          <p className="text-gray-500 font-medium max-w-xl mx-auto">
+          <p className="text-[#848693] font-medium max-w-xl mx-auto">
             See exactly what arrives at your door. Professional quality packaging and everything you need to start moving immediately.
           </p>
         </div>
 
         <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-orange-100 to-red-50 rounded-[2.5rem] blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#6149dd]/10 to-[#848693]/10 rounded-[2.5rem] blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
           
           <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-2xl border border-gray-100">
             <video 
@@ -43,15 +42,15 @@ const UsageVideoSection: React.FC = () => {
           </p>
           <div className="flex items-center justify-center space-x-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pt-2">
             <div className="flex items-center space-x-1">
-              <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
               <span>Secure Packaging</span>
             </div>
             <div className="flex items-center space-x-1">
-              <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
               <span>All Accessories Included</span>
             </div>
             <div className="flex items-center space-x-1">
-              <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
               <span>Fast Delivery</span>
             </div>
           </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const WhoForSection: React.FC = () => {
@@ -16,9 +15,9 @@ const WhoForSection: React.FC = () => {
       <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center gap-12">
         <div className="flex-1 space-y-8">
           <h2 className="text-3xl md:text-5xl font-extrabold text-[#111827] uppercase tracking-tight leading-tight">
-            Who Is This <span className="text-orange-500">Perfect For?</span>
+            Who Is This <span className="text-[#6149dd]">Perfect For?</span>
           </h2>
-          <p className="text-lg text-gray-600 leading-relaxed font-medium">
+          <p className="text-lg text-[#848693] leading-relaxed font-medium">
             Designed to fit perfectly into the UAE lifestyle. Whether you work long hours or just want to move more at home, VibeSlim is for you.
           </p>
           
@@ -33,7 +32,7 @@ const WhoForSection: React.FC = () => {
         </div>
 
         <div className="flex-1 relative">
-           <div className="absolute inset-0 bg-orange-100 rounded-full blur-3xl opacity-30 transform scale-150"></div>
+           <div className="absolute inset-0 bg-[#6149dd]/10 rounded-full blur-3xl opacity-30 transform scale-150"></div>
            <div className="rounded-[3rem] shadow-2xl relative z-10 w-full overflow-hidden bg-white aspect-square flex items-center justify-center p-0 border border-gray-100">
              <img 
                 src="https://images.supplipure.com/wp-content/uploads/2026/01/Weight-Loss-Vibration-plate-plateform.png" 

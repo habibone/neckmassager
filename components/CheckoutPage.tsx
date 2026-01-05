@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ProductOffer } from '../App';
 
@@ -81,22 +80,22 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
   };
 
   return (
-    <section className="py-24 px-4 md:px-6 bg-[#fff2e8] border-t border-orange-100/50 relative overflow-hidden">
+    <section className="py-24 px-4 md:px-6 bg-[#f5f3ff] border-t border-[#6149dd]/10 relative overflow-hidden">
       {/* Decorative soft glow */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent opacity-60"></div>
       
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-2xl font-black text-gray-900 uppercase tracking-widest mb-3">Order Details</h2>
-          <div className="h-0.5 w-8 bg-orange-400 mx-auto rounded-full"></div>
+          <div className="h-0.5 w-8 bg-[#6149dd] mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left Side: Order Summary */}
           <div className="space-y-8 order-2 lg:order-1">
-            <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] px-1">Your Selection</h3>
+            <h3 className="text-[11px] font-black text-[#848693] uppercase tracking-[0.2em] px-1">Your Selection</h3>
             
-            <div className="bg-white/80 backdrop-blur-md rounded-[2.5rem] p-8 space-y-8 border border-white shadow-xl shadow-orange-900/5">
+            <div className="bg-white/80 backdrop-blur-md rounded-[2.5rem] p-8 space-y-8 border border-white shadow-xl shadow-[#6149dd]/5">
               <div className="flex items-center space-x-6">
                 <div className="w-24 h-24 bg-gray-50 rounded-2xl border border-gray-100 p-3 shrink-0 flex items-center justify-center">
                   <img 
@@ -107,18 +106,18 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-extrabold text-gray-900 text-sm leading-snug uppercase tracking-tight">{offer.name}</h4>
-                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest">Quantity: {offer.qty}</p>
+                  <p className="text-[10px] text-[#848693] font-black uppercase tracking-widest">Quantity: {offer.qty}</p>
                 </div>
               </div>
 
               <div className="space-y-4 pt-8 border-t border-gray-100/50">
                 <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest">
-                  <span className="text-gray-400">Subtotal</span>
+                  <span className="text-[#848693]">Subtotal</span>
                   <span className="text-gray-900">{offer.price} AED</span>
                 </div>
                 <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest">
-                  <span className="text-gray-400">Shipping (UAE)</span>
-                  <span className="text-green-500">Free</span>
+                  <span className="text-[#848693]">Shipping (UAE)</span>
+                  <span className="text-emerald-500">Free</span>
                 </div>
                 <div className="flex justify-between items-center pt-6 border-t border-gray-100">
                   <span className="text-sm font-black text-gray-900 uppercase tracking-[0.1em]">Grand Total</span>
@@ -134,7 +133,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
                 </div>
                 <div className="space-y-0.5">
                   <p className="text-[10px] font-black text-gray-900 uppercase tracking-widest">Cash on Delivery</p>
-                  <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest leading-tight">Pay at your doorstep</p>
+                  <p className="text-[9px] font-bold text-[#848693] uppercase tracking-widest leading-tight">Pay at your doorstep</p>
                 </div>
               </div>
             </div>
@@ -142,7 +141,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
 
           {/* Right Side: Shipping Form */}
           <div className="space-y-8 order-1 lg:order-2">
-            <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] px-1">Delivery Information</h3>
+            <h3 className="text-[11px] font-black text-[#848693] uppercase tracking-[0.2em] px-1">Delivery Information</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
@@ -151,7 +150,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
                     required
                     type="text"
                     placeholder="Full Name"
-                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
+                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-2 focus:ring-[#6149dd]/20 focus:border-[#6149dd] outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-[#848693]/40 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
                     value={formData.fullName}
                     onChange={e => setFormData({...formData, fullName: e.target.value})}
                   />
@@ -162,7 +161,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
                     required
                     type="tel"
                     placeholder="Mobile No"
-                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
+                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-2 focus:ring-[#6149dd]/20 focus:border-[#6149dd] outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-[#848693]/40 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
                     value={formData.mobile}
                     onChange={e => setFormData({...formData, mobile: e.target.value})}
                   />
@@ -170,7 +169,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
                     required
                     type="text"
                     placeholder="City / Area"
-                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
+                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-2 focus:ring-[#6149dd]/20 focus:border-[#6149dd] outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-[#848693]/40 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
                     value={formData.city}
                     onChange={e => setFormData({...formData, city: e.target.value})}
                   />
@@ -181,7 +180,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
                     required
                     type="email"
                     placeholder="Email Address"
-                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
+                    className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-2 focus:ring-[#6149dd]/20 focus:border-[#6149dd] outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-[#848693]/40 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] shadow-sm"
                     value={formData.email}
                     onChange={e => setFormData({...formData, email: e.target.value})}
                   />
@@ -191,7 +190,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
                   required
                   rows={3}
                   placeholder="Address (Villa/Building No, Street Name...)"
-                  className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-0 focus:border-orange-400 outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-gray-300 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] resize-none shadow-sm"
+                  className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-2 focus:ring-[#6149dd]/20 focus:border-[#6149dd] outline-none transition-all font-bold text-gray-900 text-sm placeholder:text-[#848693]/40 placeholder:uppercase placeholder:tracking-widest placeholder:text-[10px] resize-none shadow-sm"
                   value={formData.address}
                   onChange={e => setFormData({...formData, address: e.target.value})}
                 ></textarea>
@@ -203,12 +202,12 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
                     required
                     type="checkbox" 
                     id="consent-final" 
-                    className="w-5 h-5 rounded-md border-gray-200 text-orange-500 focus:ring-0 cursor-pointer"
+                    className="w-5 h-5 rounded-md border-gray-200 text-[#6149dd] focus:ring-0 cursor-pointer"
                     checked={formData.confirmed}
                     onChange={e => setFormData({...formData, confirmed: e.target.checked})}
                   />
                 </div>
-                <label htmlFor="consent-final" className="text-[10px] text-gray-500 font-bold leading-relaxed select-none uppercase tracking-wide cursor-pointer">
+                <label htmlFor="consent-final" className="text-[10px] text-[#848693] font-bold leading-relaxed select-none uppercase tracking-wide cursor-pointer">
                   I verify my address is correct for <span className="text-gray-900">COD Shipping</span>.
                 </label>
               </div>
@@ -216,7 +215,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ offer, onConfirm }) => {
               <button 
                 type="submit"
                 disabled={isPlacing}
-                className="w-full py-6 gradient-cta text-white font-black rounded-3xl shadow-xl shadow-orange-200 hover:scale-[1.01] active:scale-[0.98] transition-all text-sm uppercase tracking-[0.2em] flex items-center justify-center disabled:opacity-50"
+                className="w-full py-6 gradient-cta text-white font-black rounded-3xl shadow-xl shadow-[#6149dd]/20 hover:scale-[1.01] active:scale-[0.98] transition-all text-sm uppercase tracking-[0.2em] flex items-center justify-center disabled:opacity-50"
               >
                 {isPlacing ? (
                   <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>

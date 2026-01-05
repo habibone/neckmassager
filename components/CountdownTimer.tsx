@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 interface CountdownTimerProps {
@@ -47,10 +46,10 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ className = "" }) => {
   const format = (num: number) => num.toString().padStart(2, '0');
 
   return (
-    <div className={`flex items-center justify-center space-x-1.5 text-orange-600 font-bold bg-orange-50/50 py-2 px-4 rounded-xl border border-orange-100/50 ${className}`}>
+    <div className={`flex items-center justify-center space-x-1.5 text-[#6149dd] font-bold bg-[#6149dd]/5 py-2 px-4 rounded-xl border border-[#6149dd]/10 ${className}`}>
       <span className="text-sm">⏰</span>
       <p className="text-[10px] md:text-xs uppercase tracking-tight">
-        Order within <span className="font-black text-orange-700">{format(timeLeft.hours)}:{format(timeLeft.minutes)}:{format(timeLeft.seconds)}</span> to get priority processing today
+        Order within <span className="font-black text-[#6149dd]">{format(timeLeft.hours)}:{format(timeLeft.minutes)}:{format(timeLeft.seconds)}</span> to get priority processing today
       </p>
     </div>
   );

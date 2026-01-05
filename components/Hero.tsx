@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ProductOffer } from '../App';
 import CountdownTimer from './CountdownTimer';
@@ -96,7 +95,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                   alt="Weight Loss Vibration Machine"
                 />
               )}
-              <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider pointer-events-none">
+              <div className="absolute top-4 left-4 bg-[#6149dd]/10 backdrop-blur-sm text-[#6149dd] text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider pointer-events-none">
                 {activeMedia.type === 'video' ? 'Product Video' : 'Official Photo'}
               </div>
             </div>
@@ -106,7 +105,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                 <div 
                   key={idx} 
                   onClick={() => setActiveMedia(media)}
-                  className={`aspect-square rounded-lg bg-gray-50 border-2 cursor-pointer overflow-hidden transition-all flex items-center justify-center relative ${activeMedia.src === media.src ? 'border-orange-500' : 'border-transparent hover:border-orange-200'}`}
+                  className={`aspect-square rounded-lg bg-gray-50 border-2 cursor-pointer overflow-hidden transition-all flex items-center justify-center relative ${activeMedia.src === media.src ? 'border-[#6149dd]' : 'border-transparent hover:border-[#6149dd]/20'}`}
                 >
                    <img src={media.thumb || media.src} className="w-full h-full object-contain p-1" alt={`Product detail ${idx + 1}`} />
                    {media.type === 'video' && (
@@ -124,57 +123,57 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           <div className="flex-1 space-y-6 text-center lg:text-left">
             <div className="space-y-4">
               <div className="flex items-center justify-center lg:justify-start space-x-2">
-                <div className="flex text-orange-400">
+                <div className="flex text-[#6149dd]">
                   {[1,2,3,4,5].map(s => <svg key={s} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}
                 </div>
-                <span className="text-sm font-bold text-gray-500">2,400+ Orders in UAE</span>
+                <span className="text-sm font-bold text-[#848693]">2,400+ Orders in UAE</span>
               </div>
               
               <div className="flex flex-col items-center lg:items-start space-y-2">
-                <span className="inline-block bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">
+                <span className="inline-block bg-[#6149dd]/10 text-[#6149dd] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">
                   Beginner-Friendly
                 </span>
                 <h1 className="text-3xl md:text-5xl font-black text-[#111827] leading-[1.1] tracking-tighter uppercase">
                   Weight Loss Vibration Machine <br/>
-                  <span className="text-orange-600">with Bluetooth</span>
+                  <span className="text-[#6149dd]">with Bluetooth</span>
                 </h1>
               </div>
               
-              <p className="text-sm text-gray-500 font-medium">Support your wellness goals with just 10 minutes a day. Simple movement for a healthier lifestyle.</p>
+              <p className="text-sm text-[#848693] font-medium">Support your wellness goals with just 10 minutes a day. Simple movement for a healthier lifestyle.</p>
               
               <ul className="mt-4 space-y-2 text-sm font-bold text-gray-600">
                 <li className="flex items-center justify-center lg:justify-start space-x-2">
-                  <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-                  <span>Fast Free Delivery Across UAE</span>
+                  <svg className="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+                  <span className="text-[#848693]">Fast Free Delivery Across UAE</span>
                 </li>
                 <li className="flex items-center justify-center lg:justify-start space-x-2">
-                  <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-                  <span>Pay Cash on Delivery (COD)</span>
+                  <svg className="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+                  <span className="text-[#848693]">Pay Cash on Delivery (COD)</span>
                 </li>
                 <li className="flex items-center justify-center lg:justify-start space-x-2">
-                  <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-                  <span>Complete Home Set with Accessories</span>
+                  <svg className="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+                  <span className="text-[#848693]">Complete Home Set with Accessories</span>
                 </li>
               </ul>
             </div>
 
             <div className="flex items-center justify-center lg:justify-start space-x-4">
-               <span className="text-4xl font-black text-[#ef4444]">247.00 AED</span>
-               <span className="text-xl text-gray-400 line-through">499.00 AED</span>
-               <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider">Flash Sale</span>
+               <span className="text-4xl font-black text-[#6149dd]">247.00 AED</span>
+               <span className="text-xl text-[#848693] line-through">499.00 AED</span>
+               <span className="bg-[#6149dd]/10 text-[#6149dd] px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider">Flash Sale</span>
             </div>
 
-            <div className="p-4 bg-orange-50 rounded-2xl border border-orange-100 space-y-3">
-              <div className="flex items-center justify-center lg:justify-start space-x-2 text-sm text-orange-800 font-bold">
-                <div className="w-2 h-2 rounded-full bg-orange-600"></div>
+            <div className="p-4 bg-[#f5f3ff] rounded-2xl border border-[#6149dd]/10 space-y-3">
+              <div className="flex items-center justify-center lg:justify-start space-x-2 text-sm text-[#6149dd] font-bold">
+                <div className="w-2 h-2 rounded-full bg-[#6149dd]"></div>
                 <span>{viewers} people are viewing this machine now!</span>
               </div>
               <div className="space-y-1">
-                <div className="flex justify-between text-[10px] font-black uppercase text-orange-900 tracking-widest">
+                <div className="flex justify-between text-[10px] font-black uppercase text-[#6149dd] tracking-widest">
                   <span>Hurry! Only 12 Units Left In Stock</span>
                   <span>{stockProgress}%</span>
                 </div>
-                <div className="h-2 w-full bg-orange-200 rounded-full overflow-hidden">
+                <div className="h-2 w-full bg-[#6149dd]/20 rounded-full overflow-hidden">
                   <div className="h-full gradient-cta animate-pulse" style={{width: `${stockProgress}%`}}></div>
                 </div>
               </div>
@@ -185,7 +184,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
 
                <button 
                 onClick={() => onCtaClick?.(offers[0])}
-                className="w-full py-6 gradient-cta text-white font-black text-xl rounded-2xl shadow-xl shadow-orange-200 transform hover:scale-[1.02] transition-all flex flex-col items-center justify-center uppercase tracking-tight"
+                className="w-full py-6 gradient-cta text-white font-black text-xl rounded-2xl shadow-xl shadow-[#6149dd]/20 transform hover:scale-[1.02] transition-all flex flex-col items-center justify-center uppercase tracking-tight"
               >
                 <span>Order Now – Pay on Delivery</span>
                 <span className="text-[10px] opacity-80 mt-1 font-bold">

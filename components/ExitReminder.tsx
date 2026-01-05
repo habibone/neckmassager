@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { trackEvent } from '../utils/analytics';
 
@@ -70,7 +69,7 @@ const ExitReminder: React.FC = () => {
         className="bg-[#111827] text-white p-5 rounded-[2rem] shadow-2xl border border-white/10 relative cursor-pointer group overflow-hidden"
       >
         {/* Animated Background Pulse */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600 rounded-full blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#6149dd] rounded-full blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
         
         <button 
           onClick={handleClose}
@@ -82,19 +81,19 @@ const ExitReminder: React.FC = () => {
         </button>
 
         <div className="flex items-start space-x-4 pr-6">
-          <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-orange-500/20">
+          <div className="w-12 h-12 bg-[#6149dd] rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-[#6149dd]/20">
             <span className="text-2xl animate-bounce">🎁</span>
           </div>
           <div className="space-y-1">
-            <h4 className="text-sm font-black uppercase tracking-tighter text-orange-400">Wait! Don't Miss Out</h4>
+            <h4 className="text-sm font-black uppercase tracking-tighter text-[#6149dd]">Wait! Don't Miss Out</h4>
             <p className="text-xs font-bold leading-relaxed text-gray-300">
-              We noticed you're leaving. Order within the next <span className="text-white">5 minutes</span> and we'll add a <span className="text-green-400">FREE Replacement Warranty</span> to your delivery!
+              We noticed you're leaving. Order within the next <span className="text-white">5 minutes</span> and we'll add a <span className="text-emerald-400">FREE Replacement Warranty</span> to your delivery!
             </p>
           </div>
         </div>
 
         <div className="mt-4">
-          <button className="w-full py-3 bg-white text-[#111827] font-black rounded-xl text-[10px] uppercase tracking-[0.2em] group-hover:bg-orange-500 group-hover:text-white transition-all">
+          <button className="w-full py-3 bg-white text-[#111827] font-black rounded-xl text-[10px] uppercase tracking-[0.2em] group-hover:bg-[#6149dd] group-hover:text-white transition-all">
             Claim My Free Gift Now
           </button>
         </div>
